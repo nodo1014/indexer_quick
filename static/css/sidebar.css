@@ -1,0 +1,25 @@
+/* 사이드바 토글 관련 스타일 */
+.sidebar {
+  transition: width 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.w-0 {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.sidebar-toggle-btn {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 메인 콘텐츠 영역 전환 효과 */
+main {
+  transition: width 0.3s ease;
+}

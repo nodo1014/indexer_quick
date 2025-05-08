@@ -1,0 +1,573 @@
+{
+  "generated_date": "2025-05-07T03:35:19.085141",
+  "api_endpoints": [
+    {
+      "path": "/docs/oauth2-redirect",
+      "methods": [
+        "HEAD",
+        "GET"
+      ],
+      "name": "swagger_ui_redirect",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "req",
+          "type": "starlette.requests.Request"
+        }
+      ]
+    },
+    {
+      "path": "/static",
+      "methods": [
+        "GET"
+      ],
+      "name": "static",
+      "summary": ""
+    },
+    {
+      "path": "/ws/indexing",
+      "methods": [
+        "GET"
+      ],
+      "name": "websocket_endpoint",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "websocket",
+          "type": "starlette.websockets.WebSocket"
+        }
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ],
+      "name": "read_root",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "request",
+          "type": "starlette.requests.Request"
+        }
+      ]
+    },
+    {
+      "path": "/dashboard",
+      "methods": [
+        "GET"
+      ],
+      "name": "dashboard_page",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "request",
+          "type": "starlette.requests.Request"
+        }
+      ]
+    },
+    {
+      "path": "/indexing-process",
+      "methods": [
+        "GET"
+      ],
+      "name": "indexing_process_page",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "request",
+          "type": "starlette.requests.Request"
+        }
+      ]
+    },
+    {
+      "path": "/settings",
+      "methods": [
+        "GET"
+      ],
+      "name": "settings_page",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "request",
+          "type": "starlette.requests.Request"
+        }
+      ]
+    },
+    {
+      "path": "/settings",
+      "methods": [
+        "POST"
+      ],
+      "name": "save_settings",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "request",
+          "type": "starlette.requests.Request"
+        },
+        {
+          "name": "background_tasks",
+          "type": "fastapi.background.BackgroundTasks"
+        },
+        {
+          "name": "root_dir",
+          "type": "str"
+        },
+        {
+          "name": "db_path",
+          "type": "str"
+        },
+        {
+          "name": "min_english_ratio",
+          "type": "str"
+        },
+        {
+          "name": "media_extensions",
+          "type": "list"
+        },
+        {
+          "name": "media_extensions_text",
+          "type": "str"
+        },
+        {
+          "name": "indexing_strategy",
+          "type": "str"
+        },
+        {
+          "name": "max_threads",
+          "type": "int"
+        },
+        {
+          "name": "reset_db",
+          "type": "bool"
+        },
+        {
+          "name": "skip_db_reset_check",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "path": "/search",
+      "methods": [
+        "GET"
+      ],
+      "name": "search_page",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "request",
+          "type": "starlette.requests.Request"
+        }
+      ]
+    },
+    {
+      "path": "/ai_interface",
+      "methods": [
+        "GET"
+      ],
+      "name": "ai_interface_page",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "request",
+          "type": "starlette.requests.Request"
+        }
+      ]
+    },
+    {
+      "path": "/api/ai/system_info",
+      "methods": [
+        "GET"
+      ],
+      "name": "ai_system_info",
+      "summary": null,
+      "parameters": []
+    },
+    {
+      "path": "/api/search",
+      "methods": [
+        "GET"
+      ],
+      "name": "search_subtitles",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "query",
+          "type": "str"
+        },
+        {
+          "name": "lang",
+          "type": "str"
+        },
+        {
+          "name": "start_time",
+          "type": "str"
+        },
+        {
+          "name": "end_time",
+          "type": "str"
+        },
+        {
+          "name": "page",
+          "type": "int"
+        },
+        {
+          "name": "per_page",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "path": "/api/stats",
+      "methods": [
+        "GET"
+      ],
+      "name": "get_stats",
+      "summary": null,
+      "parameters": []
+    },
+    {
+      "path": "/api/indexing_status",
+      "methods": [
+        "GET"
+      ],
+      "name": "get_indexing_status",
+      "summary": "인덱싱 상태 정보를 반환합니다.",
+      "parameters": []
+    },
+    {
+      "path": "/api/ui-structure",
+      "methods": [
+        "GET"
+      ],
+      "name": "get_ui_structure",
+      "summary": "현재 웹 애플리케이션의 구조, 기능, 페이지 등에 대한 메타데이터를 JSON 형태로 반환합니다.\n이 데이터는 AI가 웹사이트 구조를 이해하는 데 도움이 됩니다.",
+      "parameters": []
+    },
+    {
+      "path": "/api/stats/detailed",
+      "methods": [
+        "GET"
+      ],
+      "name": "get_detailed_stats",
+      "summary": "미디어 파일 수, 자막 수, 언어 통계 등 시스템의 현재 상태 정보를 상세히 반환합니다.",
+      "parameters": []
+    },
+    {
+      "path": "/api/stats/length-distribution",
+      "methods": [
+        "GET"
+      ],
+      "name": "get_length_distribution",
+      "summary": null,
+      "parameters": []
+    },
+    {
+      "path": "/api/stats/daily",
+      "methods": [
+        "GET"
+      ],
+      "name": "get_daily_stats",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "days",
+          "type": "int"
+        }
+      ]
+    },
+    {
+      "path": "/api/ai/system-info",
+      "methods": [
+        "GET"
+      ],
+      "name": "get_ai_system_info",
+      "summary": "AI 시스템이 웹사이트 기능과 데이터를 이해하기 위한 종합적인 메타데이터와 정보를 제공합니다.",
+      "parameters": []
+    },
+    {
+      "path": "/ai",
+      "methods": [
+        "GET"
+      ],
+      "name": "ai_page",
+      "summary": "AI 시스템이 웹사이트 구조와 데이터를 이해하기 위한 전용 페이지를 제공합니다.",
+      "parameters": [
+        {
+          "name": "request",
+          "type": "starlette.requests.Request"
+        }
+      ]
+    },
+    {
+      "path": "/api/index",
+      "methods": [
+        "POST"
+      ],
+      "name": "start_indexing",
+      "summary": null,
+      "parameters": [
+        {
+          "name": "background_tasks",
+          "type": "fastapi.background.BackgroundTasks"
+        },
+        {
+          "name": "incremental",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "path": "/api/stop_indexing",
+      "methods": [
+        "POST"
+      ],
+      "name": "stop_indexing",
+      "summary": null,
+      "parameters": []
+    },
+    {
+      "path": "/api/pause_indexing",
+      "methods": [
+        "POST"
+      ],
+      "name": "pause_indexing",
+      "summary": "인덱싱 프로세스를 일시정지합니다.",
+      "parameters": []
+    },
+    {
+      "path": "/api/resume_indexing",
+      "methods": [
+        "POST"
+      ],
+      "name": "resume_indexing",
+      "summary": "일시정지된 인덱싱 프로세스를 재개합니다.",
+      "parameters": []
+    },
+    {
+      "path": "/api/pause_indexing",
+      "methods": [
+        "POST"
+      ],
+      "name": "pause_indexing",
+      "summary": "인덱싱을 일시정지합니다.",
+      "parameters": []
+    },
+    {
+      "path": "/api/resume_indexing",
+      "methods": [
+        "POST"
+      ],
+      "name": "resume_indexing",
+      "summary": "일시정지된 인덱싱을 재개합니다.",
+      "parameters": []
+    },
+    {
+      "path": "/api/browse",
+      "methods": [
+        "GET"
+      ],
+      "name": "browse_directory",
+      "summary": "디렉토리 내용을 브라우징하는 API\npath 매개변수가 없으면 루트 디렉토리 목록을 반환\npath 매개변수가 있으면 해당 디렉토리의 내용을 반환",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "str"
+        }
+      ]
+    }
+  ],
+  "database_methods": [
+    {
+      "name": "clear_subtitles_for_media",
+      "docstring": "특정 미디어의 모든 자막 삭제",
+      "parameters": [
+        {
+          "name": "media_id",
+          "type": "inspect._empty"
+        }
+      ]
+    },
+    {
+      "name": "count_media",
+      "docstring": "미디어 파일 수 조회",
+      "parameters": [
+        {
+          "name": "with_subtitles_only",
+          "type": "inspect._empty"
+        }
+      ]
+    },
+    {
+      "name": "get_all_media",
+      "docstring": "모든 미디어 파일 정보 조회",
+      "parameters": [
+        {
+          "name": "with_subtitles_only",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "limit",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "offset",
+          "type": "inspect._empty"
+        }
+      ]
+    },
+    {
+      "name": "get_connection",
+      "docstring": "데이터베이스 연결 객체 반환",
+      "parameters": []
+    },
+    {
+      "name": "get_db_path",
+      "docstring": null,
+      "parameters": []
+    },
+    {
+      "name": "get_media_info",
+      "docstring": "미디어 파일 정보 조회",
+      "parameters": [
+        {
+          "name": "media_id",
+          "type": "inspect._empty"
+        }
+      ]
+    },
+    {
+      "name": "get_subtitles_for_media",
+      "docstring": "특정 미디어의 자막 조회",
+      "parameters": [
+        {
+          "name": "media_id",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "limit",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "offset",
+          "type": "inspect._empty"
+        }
+      ]
+    },
+    {
+      "name": "init_db",
+      "docstring": "데이터베이스 초기화 및 필요한 테이블 생성",
+      "parameters": []
+    },
+    {
+      "name": "insert_media",
+      "docstring": "미디어 파일 정보 저장",
+      "parameters": [
+        {
+          "name": "relative_path",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "has_subtitle",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "size",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "last_modified",
+          "type": "inspect._empty"
+        }
+      ]
+    },
+    {
+      "name": "insert_subtitle",
+      "docstring": "자막 정보 저장",
+      "parameters": [
+        {
+          "name": "media_id",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "start_ms",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "end_ms",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "start_text",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "end_text",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "content",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "lang",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "verified",
+          "type": "inspect._empty"
+        }
+      ]
+    },
+    {
+      "name": "search_subtitles",
+      "docstring": "자막 내용 검색 (FTS 이용)",
+      "parameters": [
+        {
+          "name": "query",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "limit",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "offset",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "lang",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "start_time",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "end_time",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "page",
+          "type": "inspect._empty"
+        },
+        {
+          "name": "per_page",
+          "type": "inspect._empty"
+        }
+      ]
+    },
+    {
+      "name": "upsert_media",
+      "docstring": "미디어 파일 정보 갱신 또는 삽입 (indexer.py와 호환성을 위한 메소드)",
+      "parameters": [
+        {
+          "name": "media_path",
+          "type": "inspect._empty"
+        }
+      ]
+    }
+  ]
+}

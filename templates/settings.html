@@ -1,0 +1,467 @@
+{% extends "base.html" %} {% block title %}환경 설정{% endblock %} {% block head
+%}
+<script src="/static/js/settings.js"></script>
+{% endblock %} {% block content %}
+<h1 class="text-3xl font-bold mb-6">환경 설정</h1>
+
+<div class="bg-white p-6 rounded shadow-md">
+  <form method="post" action="/settings" class="space-y-6">
+    <!-- 디렉토리 설정 -->
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold">디렉토리 설정</h2>
+      <div>
+        <label for="root_dir" class="block text-sm font-medium text-gray-700"
+          >루트 디렉토리:</label
+        >
+        <div class="mt-1 flex rounded-md shadow-sm">
+          <input
+            type="text"
+            name="root_dir"
+            id="root_dir"
+            value="{{ config.get('root_dir', '') }}"
+            placeholder="/path/to/media"
+            class="flex-1 min-w-0 block w-full px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+          <button
+            type="button"
+            id="browse-button"
+            class="inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 bg-gray-50 text-gray-700 rounded-r-md hover:bg-gray-100"
+            hx-get="/api/browse"
+            hx-target="#directory-browser-modal-content"
+            hx-swap="innerHTML"
+            onclick="document.getElementById('directory-browser-modal').classList.remove('hidden')"
+          >
+            찾아보기...
+          </button>
+        </div>
+        <p class="mt-1 text-sm text-gray-500">
+          미디어 파일과 자막 파일이 있는 루트 디렉토리를 지정해주세요. 하위
+          폴더까지 모두 스캔됩니다. 데이터베이스 파일이 이 위치에 자동으로
+          저장됩니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- 디렉토리 브라우저 모달 -->
+    <div
+      id="directory-browser-modal"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50"
+    >
+      <div
+        class="relative top-20 mx-auto p-5 border w-1/2 shadow-lg rounded-md bg-white"
+      >
+        <div class="mt-3">
+          <h3
+            class="text-lg leading-6 font-medium text-gray-900 text-center mb-4"
+          >
+            디렉토리 선택
+          </h3>
+          <div
+            id="directory-browser-modal-content"
+            class="max-h-[50vh] overflow-y-auto p-3 border rounded"
+          >
+            <!-- 이곳에 디렉토리 내용이 로드됩니다 -->
+          </div>
+
+          <div class="flex justify-between mt-5 border-t pt-4">
+            <div>
+              <button
+                type="button"
+                id="use-current-dir-btn"
+                onclick="saveSelectedDirectory()"
+                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mr-2"
+              >
+                현재 경로 사용하기
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                id="cancel-modal-btn"
+                class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded"
+              >
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 자막 설정 -->
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold">자막 설정</h2>
+
+      <!-- 인덱싱 전략 설정 추가 -->
+      <div class="pt-4 border-t mt-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2"
+          >인덱싱 전략:</label
+        >
+
+        <div class="space-y-3">
+          <div class="flex items-start">
+            <input type="radio" name="indexing_strategy" id="strategy_standard"
+            value="standard" {{ 'checked' if config.get('indexing_strategy',
+            'standard') == 'standard' else '' }} class="mt-1 mr-2" />
+            <div>
+              <label for="strategy_standard" class="font-medium"
+                >표준 처리 (권장)</label
+              >
+              <p class="text-sm text-gray-500">
+                자막을 파일별로 순차 처리합니다. 대부분의 경우 적합한 기본
+                설정입니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <input type="radio" name="indexing_strategy" id="strategy_batch"
+            value="batch" {{ 'checked' if config.get('indexing_strategy') ==
+            'batch' else '' }} class="mt-1 mr-2" />
+            <div>
+              <label for="strategy_batch" class="font-medium">일괄 처리</label>
+              <p class="text-sm text-gray-500">
+                자막을 일괄적으로 DB에 저장 후 처리합니다. 대용량 처리에
+                효율적이지만 메모리 사용량이 증가합니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <input type="radio" name="indexing_strategy" id="strategy_parallel"
+            value="parallel" {{ 'checked' if config.get('indexing_strategy') ==
+            'parallel' else '' }} class="mt-1 mr-2" />
+            <div>
+              <label for="strategy_parallel" class="font-medium"
+                >병렬 처리</label
+              >
+              <p class="text-sm text-gray-500">
+                여러 자막을 동시에 병렬로 처리합니다. 멀티코어 CPU에서 속도가
+                크게 향상되지만 CPU 사용량이 높아집니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <input type="radio" name="indexing_strategy"
+            id="strategy_delayed_language" value="delayed_language" {{ 'checked'
+            if config.get('indexing_strategy') == 'delayed_language' else '' }}
+            class="mt-1 mr-2" />
+            <div>
+              <label for="strategy_delayed_language" class="font-medium"
+                >지연된 언어 감지</label
+              >
+              <p class="text-sm text-gray-500">
+                먼저 모든 자막을 DB에 저장한 후 나중에 비영어 자막을
+                필터링합니다. 인덱싱 속도는 빠르지만 초기 DB 크기가 커집니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2 text-sm text-gray-600">
+          <p class="font-semibold">참고:</p>
+          <p>
+            병렬 처리 옵션은 CPU 코어 수에 따라 성능이 달라집니다. 최대 스레드
+            수:
+            <input
+              type="number"
+              name="max_threads"
+              min="2"
+              max="16"
+              value="{{ config.get('max_threads', '4') }}"
+              class="w-16 inline-block border rounded px-2 py-1"
+            />
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <label class="block text-sm font-medium text-gray-700 mb-2"
+          >미디어 확장자:</label
+        >
+
+        <!-- 비디오 확장자 -->
+        <div class="mb-3">
+          <p class="text-sm font-semibold mb-2">비디오:</p>
+          <div class="grid grid-cols-3 md:grid-cols-5 gap-2">
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_mp4" name="media_extensions"
+              value=".mp4" {{ 'checked' if '.mp4' in
+              config.get('media_extensions', ['.mp4', '.mkv', '.avi', '.mp3',
+              '.wav']) else '' }} class="mr-2">
+              <label for="ext_mp4">.mp4</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_mkv" name="media_extensions"
+              value=".mkv" {{ 'checked' if '.mkv' in
+              config.get('media_extensions', ['.mp4', '.mkv', '.avi', '.mp3',
+              '.wav']) else '' }} class="mr-2">
+              <label for="ext_mkv">.mkv</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_avi" name="media_extensions"
+              value=".avi" {{ 'checked' if '.avi' in
+              config.get('media_extensions', ['.mp4', '.mkv', '.avi', '.mp3',
+              '.wav']) else '' }} class="mr-2">
+              <label for="ext_avi">.avi</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_mov" name="media_extensions"
+              value=".mov" {{ 'checked' if '.mov' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_mov">.mov</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_wmv" name="media_extensions"
+              value=".wmv" {{ 'checked' if '.wmv' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_wmv">.wmv</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_m4v" name="media_extensions"
+              value=".m4v" {{ 'checked' if '.m4v' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_m4v">.m4v</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_flv" name="media_extensions"
+              value=".flv" {{ 'checked' if '.flv' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_flv">.flv</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_webm" name="media_extensions"
+              value=".webm" {{ 'checked' if '.webm' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_webm">.webm</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 오디오 확장자 -->
+        <div>
+          <p class="text-sm font-semibold mb-2">오디오:</p>
+          <div class="grid grid-cols-3 md:grid-cols-5 gap-2">
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_mp3" name="media_extensions"
+              value=".mp3" {{ 'checked' if '.mp3' in
+              config.get('media_extensions', ['.mp4', '.mkv', '.avi', '.mp3',
+              '.wav']) else '' }} class="mr-2">
+              <label for="ext_mp3">.mp3</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_wav" name="media_extensions"
+              value=".wav" {{ 'checked' if '.wav' in
+              config.get('media_extensions', ['.mp4', '.mkv', '.avi', '.mp3',
+              '.wav']) else '' }} class="mr-2">
+              <label for="ext_wav">.wav</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_flac" name="media_extensions"
+              value=".flac" {{ 'checked' if '.flac' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_flac">.flac</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_aac" name="media_extensions"
+              value=".aac" {{ 'checked' if '.aac' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_aac">.aac</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_ogg" name="media_extensions"
+              value=".ogg" {{ 'checked' if '.ogg' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_ogg">.ogg</label>
+            </div>
+            <div class="flex items-center">
+              <input type="checkbox" id="ext_m4a" name="media_extensions"
+              value=".m4a" {{ 'checked' if '.m4a' in
+              config.get('media_extensions', []) else '' }} class="mr-2">
+              <label for="ext_m4a">.m4a</label>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-2 text-sm text-gray-500">
+          인덱싱할 미디어 파일 확장자를 선택하세요.
+        </p>
+
+        <!-- 기존 텍스트 입력은 hidden으로 유지 (백엔드 호환성) -->
+        <input
+          type="hidden"
+          id="media_extensions_hidden"
+          name="media_extensions_text"
+          value="{{ config.get('media_extensions', '.mp4,.mkv,.avi,.mp3,.wav')|join(',') }}"
+        />
+
+        <!-- DB 경로에 대한 hidden 필드 추가 (루트 디렉토리에 고정) -->
+        <input type="hidden" name="db_path" value="media_index.db" />
+      </div>
+    </div>
+
+    <!-- 버튼 그룹 -->
+    <div class="flex justify-end pt-6 border-t mt-6">
+      <button
+        type="reset"
+        onclick="resetSettings()"
+        class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2"
+      >
+        기본값으로 복원
+      </button>
+
+      <button
+        type="button"
+        class="ml-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+        onclick="confirmResetDatabase()"
+      >
+        DB 초기화 후 재인덱싱
+      </button>
+
+      <button
+        type="submit"
+        class="ml-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+      >
+        설정 저장
+      </button>
+    </div>
+
+    <!-- DB 초기화용 숨겨진 필드 -->
+    <input type="hidden" name="reset_db" id="reset_db" value="false" />
+  </form>
+</div>
+
+<!-- DB 초기화 확인 모달 -->
+<div
+  id="reset-db-modal"
+  class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50"
+>
+  <div
+    class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+  >
+    <div class="mt-3 text-center">
+      <div
+        class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100"
+      >
+        <svg
+          class="h-6 w-6 text-red-600"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
+        </svg>
+      </div>
+      <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">
+        데이터베이스 초기화
+      </h3>
+      <div class="mt-2 px-7 py-3">
+        <p class="text-sm text-gray-500">
+          데이터베이스가 완전히 초기화되고 모든 인덱싱 데이터가 삭제됩니다. 이
+          작업은 되돌릴 수 없습니다.
+        </p>
+      </div>
+      <div class="items-center px-4 py-3">
+        <button
+          id="confirm-reset-btn"
+          class="px-4 py-2 bg-red-600 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+        >
+          초기화 후 재인덱싱 진행
+        </button>
+        <button
+          id="cancel-reset-btn"
+          class="mt-3 px-4 py-2 bg-gray-300 text-gray-800 text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+        >
+          취소
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 루트 디렉토리 변경 감지 모달 -->
+<div
+  id="root-dir-change-modal"
+  class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full {% if show_reset_modal %}flex{% else %}hidden{% endif %} z-50 items-center justify-center"
+>
+  <div class="relative p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div class="mt-3 text-center">
+      <div
+        class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100"
+      >
+        <svg
+          class="h-6 w-6 text-yellow-600"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
+        </svg>
+      </div>
+      <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">
+        루트 디렉토리 변경 감지
+      </h3>
+      <div class="mt-2 px-7 py-3">
+        <p class="text-sm text-gray-600 mb-2">
+          루트 디렉토리가 변경되었습니다:
+        </p>
+        <p class="text-xs text-gray-500 mb-1">이전: {{ old_root_dir }}</p>
+        <p class="text-xs text-gray-500">새 경로: {{ new_root_dir }}</p>
+        <p class="text-sm text-gray-600 mt-3 font-medium">
+          새 경로에 맞게 DB를 초기화하고 재인덱싱이 필요합니다.
+        </p>
+      </div>
+      <form method="post" action="/settings" class="items-center px-4 py-3">
+        <!-- 기존 폼 필드 복사 -->
+        <input type="hidden" name="root_dir" value="{{ new_root_dir }}" />
+        <input type="hidden" name="db_path" value="media_index.db" />
+        <input
+          type="hidden"
+          name="indexing_strategy"
+          value="{{ config.get('indexing_strategy', 'standard') }}"
+        />
+        <input
+          type="hidden"
+          name="max_threads"
+          value="{{ config.get('max_threads', '4') }}"
+        />
+        <input
+          type="hidden"
+          name="media_extensions_text"
+          value="{{ config.get('media_extensions', '.mp4,.mkv,.avi,.mp3,.wav')|join(',') }}"
+        />
+
+        <!-- 처리 플래그 -->
+        <input type="hidden" name="skip_db_reset_check" value="true" />
+
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-600 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          확인 및 자동 처리
+        </button>
+        <a
+          href="/settings"
+          class="mt-3 inline-block px-4 py-2 bg-gray-300 text-gray-800 text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+        >
+          취소
+        </a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

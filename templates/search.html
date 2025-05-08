@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block title %}자막 검색{% endblock %}
+
+{% block head %}
+<!-- 검색 페이지 전용 스타일 -->
+<!-- Video.js CSS 미리 로드 -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/video.js@8/dist/video-js.min.css"
+/>
+
+<!-- Video.js 스크립트 미리 로드 -->
+<script src="https://cdn.jsdelivr.net/npm/video.js@8/dist/video.min.js"></script>
+
+<!-- 검색 페이지 전용 CSS 파일 로드 -->
+<link rel="stylesheet" href="/static/css/search.css">
+{% endblock %}
+
+{% block content %}
+<!-- 페이지 초기화 스크립트 -->
+<script>
+  // 페이지 로드 시 즉시 실행되는 스크립트
+  (function() {
+    console.log('페이지 초기화 스크립트 실행');
+    
+    // 문서 로드 완료 후 실행될 함수 등록
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('페이지 로드 완료');
+      // 로딩 화면 숨기기
+      setTimeout(function() {
+        const loadingElement = document.getElementById('content-loading');
+        if (loadingElement) {
+          loadingElement.classList.add('hidden');
+          setTimeout(() => { loadingElement.style.display = 'none'; }, 500);
+        }
+      }, 1000); // 1초 후 로딩 화면 숨김
+    });
+  })();
+</script>
+
+<!-- 검색 페이지 컨테이너 -->
+<div class="search-container relative">
+  <!-- 로딩 화면 -->
+  <div id="content-loading" class="content-loading">
+    <div class="text-center">
+      <div class="loading-spinner mb-4 mx-auto"></div>
+      <p class="text-gray-600">초기화 중입니다...</p>
+    </div>
+  </div>
+  <!-- 새로운 레이아웃 구조 -->
+  <div class="search-layout">
+    <!-- 좌측 사이드바 - 자막 결과 영역 및 검색 폼 -->
+    <div class="search-sidebar">
+      <!-- 검색 폼 -->
+      <form id="search-form" class="flex flex-wrap items-center gap-2 mb-4">
+        <div class="flex items-center gap-1">
+          <span class="text-sm font-medium text-gray-600">미디어:</span>
+          <select
+            id="media-filter"
+            class="border border-gray-300 rounded p-2 text-sm"
+          >
+            <option value="all">전체</option>
+            <option value="video">영상</option>
+            <option value="audio">오디오</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-1 ml-2">
+          <span class="text-sm font-medium text-gray-600">정렬:</span>
+          <select
+            id="sort-filter"
+            class="border border-gray-300 rounded p-2 text-sm"
+          >
+            <option value="relevance">관련도</option>
+            <option value="recent">최신순</option>
+            <option value="oldest">오래된순</option>
+          </select>
+        </div>
+
+        <div class="flex flex-1 items-center mt-2 sm:mt-0 w-full sm:w-auto">
+          <input
+            type="text"
+            id="search-input"
+            name="query"
+            placeholder="검색어를 입력하세요"
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <button
+            type="submit"
+            class="px-4 py-2 bg-blue-600 text-white rounded-r hover:bg-blue-700 transition"
+          >
+            검색
+          </button>
+        </div>
+      </form>
+      <!-- 중요: 검색은 미디어가 있는 자막만을 대상으로 합니다 -->
+      <div class="bg-white rounded-lg shadow-md p-4 h-full" id="subtitle-section">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-lg font-medium text-gray-800">검색 결과</h3>
+          <div>
+            <button
+              id="bookmark-filter-btn"
+              class="btn-star bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-3 py-1 rounded-md"
+            >
+              북마크만 보기
+            </button>
+          </div>
+        </div>
+        <div id="current-result-info" class="text-gray-500 text-sm mb-3"></div>
+
+        <!-- 검색 결과 영역 -->
+        <div class="subtitle-pair-list" id="subtitle-results">
+          <!-- 검색 결과가 여기에 표시됩니다 -->
+          <div class="text-center p-4 text-gray-500">
+            검색어를 입력하면 결과가 여기에 표시됩니다.
+          </div>
+        </div>
+        <div id="search-results-list" class="mt-4">
+          <!-- 전체 검색 결과: 파일제목, 검색된 자막 포함 문장 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 (비디오 플레이어) -->
+    <div class="search-main">
+    <!-- <h2 class="text-2xl font-bold mb-4 text-blue-700">
+      유글리쉬 클론 (이중 자막 검색)
+    </h2> -->
+
+    <!-- 태그/북마크 설명 툴팁 -->
+    <div
+      id="feature-tooltip"
+      class="bg-blue-50 p-3 mb-4 rounded-lg border border-blue-200 text-sm"
+    >
+      <div class="flex justify-between items-center">
+        <span class="font-medium text-blue-800">🔖 북마크 및 태그 기능</span>
+        <button id="close-tooltip" class="text-blue-500 hover:text-blue-700">
+          ✕
+        </button>
+      </div>
+      <p class="mt-1 text-blue-700">
+        <span class="font-medium">북마크:</span> 자막 오른쪽의 ☆ 버튼을 클릭해
+        중요한 문장을 저장하세요. <br /><span class="font-medium">태그:</span>
+        자막 항목에 마우스를 올리면 나타나는 🏷️ 버튼으로 태그를 추가할 수
+        있습니다.
+      </p>
+    </div>
+
+    <!-- 비디오 플레이어 영역 -->
+    <div class="video-player-container relative">
+      <video
+        id="media-player"
+        class="video-js vjs-big-play-centered vjs-fluid w-full mb-1 bg-gray-900 rounded shadow"
+        controls
+        preload="metadata"
+        data-setup="{}"
+      ></video>
+
+      <!-- 현재 재생 중인 자막 표시 영역 -->
+      <div
+        id="current-subtitle-display"
+        class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3 mb-2 rounded-lg border border-blue-100"
+      >
+        <div class="flex text-sm">
+          <span class="w-20 flex-shrink-0 text-blue-500 font-medium"
+            >현재 자막:</span
+          >
+          <div class="flex-grow">
+            <div id="current-subtitle-en" class="text-gray-100"></div>
+            <div id="current-subtitle-ko" class="text-blue-200"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 재생 상태 메시지 추가 -->
+      <div
+        id="playback-status"
+        class="text-sm text-center text-blue-600 mb-2 font-medium hidden"
+      ></div>
+
+      <div
+        id="current-filename"
+        class="mb-2 text-blue-600 font-semibold text-sm"
+      ></div>
+
+      <!-- 재생 컨트롤 영역 -->
+      <div class="flex flex-wrap gap-2 items-center mb-4 justify-between">
+        <div class="flex gap-2 flex-wrap">
+          <button
+            id="prev-video-btn"
+            class="btn-control bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md"
+            title="이전 영상"
+          >
+            이전 영상
+          </button>
+          <button
+            id="next-video-btn"
+            class="btn-control bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md"
+            title="다음 영상"
+          >
+            다음 영상
+          </button>
+          <button
+            id="prev-line-btn"
+            class="btn-control bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-md"
+            title="이전 대사"
+          >
+            이전 문장
+          </button>
+          <button
+            id="repeat-line-btn"
+            class="btn-control bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-md"
+            title="문장 반복"
+          >
+            반복
+          </button>
+          <input
+            type="number"
+            id="repeat-count"
+            value="2"
+            min="1"
+            max="10"
+            class="w-12 text-center border border-gray-300 rounded"
+          />
+          <span class="text-sm">회</span>
+          <button
+            id="next-line-btn"
+            class="btn-control bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-md"
+            title="다음 대사"
+          >
+            다음 문장
+          </button>
+
+          <div class="border-l border-gray-300 h-6 mx-1"></div>
+
+          <div class="flex items-center gap-1">
+            <span class="text-sm font-medium text-gray-600">재생 모드:</span>
+            <select
+              id="playback-mode"
+              class="border border-gray-300 rounded p-1 text-sm"
+            >
+              <option value="search-results" selected>검색 결과만</option>
+              <option value="sequential">순차 재생</option>
+              <option value="random">랜덤 재생</option>
+              <option value="repeat-one">한 부분 반복</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 페이지 초기화 및 기능 스크립트 로드 -->
+<!-- 먼저 초기화 스크립트 로드 -->
+<script src="/static/js/search-init.js"></script>
+
+<!-- 추가 스크립트 -->
+<script>
+  // 페이지 초기화 완료 후 실행될 코드
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('추가 초기화 작업 실행');
+    
+    // 비디오 플레이어 영역 초기화
+    const videoContainer = document.querySelector('.video-player-container');
+    if (videoContainer) {
+      console.log('비디오 플레이어 영역 초기화');
+    }
+    
+    // 자막 섹션 초기화
+    const subtitleSection = document.getElementById('subtitle-section');
+    if (subtitleSection) {
+      console.log('자막 섹션 초기화 완료');
+    }
+  });
+</script>
+
+<!-- search-api.js 로드 -->
+<script src="/static/js/search-api.js"></script>
+
+<!-- 모듈 로드 -->
+<script type="module" src="/static/js/search.js"></script>
+
+<!-- 디버깅 용 스크립트 -->
+<script>
+  console.log('스크립트 로드 완료:', new Date().toISOString(), '(소요 시간:', Date.now() - window.pageLoadStartTime, 'ms)');
+</script>
+{% endblock %}

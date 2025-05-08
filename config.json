@@ -1,0 +1,10 @@
+{
+  "root_dir": "/Volumes/p31/Eng_Media",
+  "media_extensions": [".mp4", ".mkv", ".avi", ".mov", ".wmv"],
+  "subtitle_extension": ".srt",
+  "min_english_ratio": 0.2,
+  "db_path": "media_index.db",
+  "indexing_strategy": "standard",
+  "max_threads": 8,
+  "last_scan_time": null
+}

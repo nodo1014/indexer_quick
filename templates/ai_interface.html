@@ -1,0 +1,303 @@
+{% extends "base.html" %} {% block title %}AI Interface{% endblock %} {% block
+content %}
+<div class="container mt-4">
+  <h1>AI System Interface</h1>
+  <p class="lead">
+    This page provides structured information about the system for AI analysis.
+  </p>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3>System Overview</h3>
+    </div>
+    <div class="card-body">
+      <div id="system-info">Loading system information...</div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3>API Documentation</h3>
+    </div>
+    <div class="card-body">
+      <h4>Available Endpoints</h4>
+      <ul>
+        <li>
+          <code>/api/ai/system_info</code> - Complete system information and
+          statistics
+        </li>
+        <li>
+          <code>/api/search</code> - Search subtitles by query, language, and
+          time range
+        </li>
+        <li><code>/api/stats</code> - Get system statistics</li>
+        <li><code>/api/indexing/status</code> - Get current indexing status</li>
+      </ul>
+
+      <h4>Example Usage</h4>
+      <pre><code>curl -X GET "http://localhost:8000/api/ai/system_info"</code></pre>
+      <pre><code>curl -X GET "http://localhost:8000/api/search?query=hello&lang=en&page=1&per_page=50"</code></pre>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3>Database Schema</h3>
+    </div>
+    <div class="card-body">
+      <div id="schema-info">Loading schema information...</div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <h3>Real-time Statistics</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="media-stats">Loading media statistics...</div>
+        </div>
+        <div class="col-md-6">
+          <div id="subtitle-stats">Loading subtitle statistics...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // 시스템 정보 로드
+    fetch("/api/ai/system_info")
+      .then((response) => response.json())
+      .then((data) => {
+        // 시스템 정보
+        const sysInfoEl = document.getElementById("system-info");
+        sysInfoEl.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Configuration</h5>
+                        <ul>
+                            <li><strong>Root Directory:</strong> ${
+                              data.config.root_directory
+                            }</li>
+                            <li><strong>Database Path:</strong> ${
+                              data.config.database_path
+                            }</li>
+                            <li><strong>Supported Extensions:</strong> ${data.config.media_extensions.join(
+                              ", "
+                            )}</li>
+                            <li><strong>Indexing Strategy:</strong> ${
+                              data.config.indexing_strategy
+                            }</li>
+                            <li><strong>Max Threads:</strong> ${
+                              data.config.max_threads
+                            }</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Indexing Status</h5>
+                        <ul>
+                            <li><strong>Active:</strong> ${
+                              data.indexing.is_active ? "Yes" : "No"
+                            }</li>
+                            <li><strong>Current File:</strong> ${
+                              data.indexing.current_operation || "None"
+                            }</li>
+                            <li><strong>Progress:</strong> ${Math.round(
+                              data.indexing.progress * 100
+                            )}%</li>
+                            <li><strong>Started:</strong> ${
+                              data.indexing.started_at || "N/A"
+                            }</li>
+                            <li><strong>ETA:</strong> ${
+                              data.indexing.estimated_completion || "N/A"
+                            }</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+        // 데이터베이스 스키마
+        const schemaEl = document.getElementById("schema-info");
+        let schemaHtml =
+          '<div class="table-responsive"><table class="table table-bordered">';
+        schemaHtml +=
+          "<thead><tr><th>Table</th><th>Columns</th><th>Keys</th></tr></thead><tbody>";
+
+        data.database_schema.tables.forEach((table) => {
+          schemaHtml += `<tr>
+                    <td>${table.name}${
+            table.type ? " (" + table.type + ")" : ""
+          }</td>
+                    <td>${table.columns.join(", ")}</td>
+                    <td>
+                        ${
+                          table.primary_key
+                            ? "PK: " + table.primary_key + "<br>"
+                            : ""
+                        }
+                        ${
+                          table.foreign_keys
+                            ? table.foreign_keys
+                                .map(
+                                  (fk) =>
+                                    "FK: " + fk.column + " → " + fk.references
+                                )
+                                .join("<br>")
+                            : ""
+                        }
+                    </td>
+                </tr>`;
+        });
+
+        schemaHtml += "</tbody></table></div>";
+        schemaEl.innerHTML = schemaHtml;
+
+        // 미디어 파일 통계
+        const mediaStatsEl = document.getElementById("media-stats");
+        mediaStatsEl.innerHTML = `
+                <h5>Media Files</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td>Total Files</td>
+                                <td>${
+                                  data.statistics.media_files.total_count
+                                }</td>
+                            </tr>
+                            <tr>
+                                <td>With Subtitles</td>
+                                <td>${
+                                  data.statistics.media_files.with_subtitles
+                                }</td>
+                            </tr>
+                            <tr>
+                                <td>Without Subtitles</td>
+                                <td>${
+                                  data.statistics.media_files.without_subtitles
+                                }</td>
+                            </tr>
+                            <tr>
+                                <td>Subtitle Coverage</td>
+                                <td>${
+                                  data.statistics.media_files
+                                    .subtitle_coverage_percentage
+                                }%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mt-4">File Extensions</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Extension</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${Object.entries(data.statistics.file_extensions)
+                              .map(
+                                ([ext, count]) =>
+                                  `<tr>
+                                    <td>${ext || "(none)"}</td>
+                                    <td>${count}</td>
+                                </tr>`
+                              )
+                              .join("")}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+        // 자막 통계
+        const subtitleStatsEl = document.getElementById("subtitle-stats");
+        subtitleStatsEl.innerHTML = `
+                <h5>Subtitles</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td>Total Entries</td>
+                                <td>${
+                                  data.statistics.subtitles.total_entries
+                                }</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mt-4">Language Distribution</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Language</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${Object.entries(
+                              data.statistics.subtitles.language_distribution
+                            )
+                              .map(
+                                ([lang, count]) =>
+                                  `<tr>
+                                    <td>${lang || "Unknown"}</td>
+                                    <td>${count}</td>
+                                </tr>`
+                              )
+                              .join("")}
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mt-4">Subtitle Length Distribution</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Length Category</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${Object.entries(
+                              data.statistics.subtitle_length_distribution
+                            )
+                              .map(
+                                ([category, count]) =>
+                                  `<tr>
+                                    <td>${category}</td>
+                                    <td>${count}</td>
+                                </tr>`
+                              )
+                              .join("")}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+      })
+      .catch((error) => {
+        console.error("Error fetching system info:", error);
+        document.getElementById(
+          "system-info"
+        ).innerHTML = `<div class="alert alert-danger">Error loading system information: ${error.message}</div>`;
+        document.getElementById(
+          "schema-info"
+        ).innerHTML = `<div class="alert alert-danger">Error loading schema information</div>`;
+        document.getElementById(
+          "media-stats"
+        ).innerHTML = `<div class="alert alert-danger">Error loading media statistics</div>`;
+        document.getElementById(
+          "subtitle-stats"
+        ).innerHTML = `<div class="alert alert-danger">Error loading subtitle statistics</div>`;
+      });
+  });
+</script>
+{% endblock %}

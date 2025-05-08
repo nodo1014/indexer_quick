@@ -1,0 +1,245 @@
+{% extends "base.html" %} {% block title %}인덱싱 상태{% endblock %} {% block
+head %}
+<style>
+  /* 인덱싱 상태 스타일 */
+  .indexing-status-card {
+    border-left: 4px solid;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+  }
+
+  .status-running {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+  }
+
+  .status-paused {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+  }
+
+  .status-completed {
+    border-color: #10b981;
+    background-color: #ecfdf5;
+  }
+
+  .status-idle {
+    border-color: #6b7280;
+    background-color: #f9fafb;
+  }
+
+  /* 프로그레스 바 */
+  .progress-bar {
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #e5e7eb;
+    overflow: hidden;
+    margin: 0.5rem 0;
+  }
+
+  .progress-value {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 0.25rem;
+  }
+
+  /* 로그 영역 */
+  .log-container {
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.875rem;
+    background-color: #f3f4f6;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  /* 스피너 애니메이션 */
+  @keyframes spinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spinner:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #3b82f6;
+    animation: spinner 0.6s linear infinite;
+  }
+</style>
+<script src="/static/js/indexing.js"></script>
+{% endblock %} {% block content %}
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-2">인덱싱 관리</h1>
+  <p class="text-gray-600 mb-6">
+    인덱싱 진행 상황을 확인하고 제어할 수 있습니다.
+  </p>
+
+  <!-- 인덱싱 상태 표시 영역 -->
+  <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+    <h2 class="text-xl font-semibold mb-4">현재 인덱싱 상태</h2>
+    <div
+      id="indexing-status"
+      hx-get="/api/indexing_status"
+      hx-trigger="load, every 5s"
+      hx-swap="innerHTML"
+    >
+      <div class="text-center p-8 relative">
+        <div class="spinner"></div>
+        <p class="mt-8 text-gray-500">인덱싱 상태 로딩 중...</p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <div class="control-buttons">
+        <button
+          id="stop-indexing-btn"
+          class="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          hx-post="/api/stop_indexing"
+          hx-confirm="인덱싱을 중지하시겠습니까? 나중에 다시 시작할 수 있습니다."
+          hx-target="#indexing-status"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          인덱싱 중지
+        </button>
+
+        <!-- 일시정지/재개 토글 버튼 (기존 두 버튼을 대체) -->
+        <button
+          id="toggle-indexing-btn"
+          class="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded"
+          hx-post="/api/pause_indexing"
+          hx-target="#indexing-status"
+          data-pause-text="일시정지"
+          data-resume-text="재개"
+          data-pause-icon='<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />'
+          data-resume-icon='<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />'
+          data-pause-color="bg-yellow-500 hover:bg-yellow-600"
+          data-resume-color="bg-green-600 hover:bg-green-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            id="toggle-indexing-icon"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <span id="toggle-indexing-text">일시정지</span>
+        </button>
+
+        <a
+          href="/dashboard"
+          class="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+          </svg>
+          대시보드로 이동
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 인덱싱 프로세스 설명 -->
+  <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+    <h2 class="text-xl font-semibold mb-4">인덱싱 프로세스 안내</h2>
+
+    <p class="mb-4">
+      인덱싱은 자막 파일을 검색할 수 있도록 데이터베이스에 정보를 저장하는
+      과정입니다.
+    </p>
+
+    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+      <h3 class="font-semibold text-blue-800">자동 인덱싱</h3>
+      <p class="text-sm">
+        환경 설정을 저장할 때마다 자동으로 인덱싱이 진행됩니다. 이전에 인덱싱된
+        기록이 있으면 증분 인덱싱으로 진행되어 새로 추가되거나 변경된 파일만
+        처리합니다.
+      </p>
+    </div>
+
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+      <h3 class="font-semibold text-yellow-800">제어 기능</h3>
+      <ul class="list-disc pl-5 space-y-1 text-sm">
+        <li>
+          <strong>중지</strong>: 인덱싱 프로세스를 완전히 중단합니다. 나중에
+          처음부터 다시 시작할 수 있습니다.
+        </li>
+        <li>
+          <strong>일시정지</strong>: 현재 상태를 유지한 채로 인덱싱을 일시적으로
+          멈춥니다. 나중에 중단된 지점부터 다시 시작할 수 있습니다.
+        </li>
+        <li>
+          <strong>재개</strong>: 일시정지된 인덱싱을 중단된 지점부터 다시
+          시작합니다.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 문제 해결 -->
+  <div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-4">문제 해결</h2>
+
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-semibold text-lg">인덱싱이 너무 느려요</h3>
+        <p class="text-gray-700">
+          대용량 라이브러리의 경우 인덱싱에 시간이 걸릴 수 있습니다. 환경
+          설정에서 병렬 처리 옵션을 선택하면 속도를 개선할 수 있습니다.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-lg">오류가 발생했어요</h3>
+        <p class="text-gray-700">
+          인덱싱 중 오류가 발생한 경우, 환경 설정 페이지에서 'DB 초기화 후
+          재인덱싱' 기능을 사용해볼 수 있습니다.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-lg">자막이 보이지 않아요</h3>
+        <p class="text-gray-700">
+          자막 파일이 지원되는 형식(.srt)인지 확인하고, 파일 인코딩이 올바른지
+          확인해보세요. 환경 설정에서 영어 인식 비율을 조정해보는 것도 도움이
+          됩니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>영어 자막 인덱서 - {% block title %}{% endblock %}</title>
+
+    <!-- 스타일시트 로드 -->
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+    <link rel="stylesheet" href="/static/css/sidebar.css" />
+
+    <!-- 파비콘 -->
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts: Noto Sans KR, Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body,
+      input,
+      button,
+      select,
+      textarea {
+        font-family: "Noto Sans KR", "Roboto", system-ui, sans-serif;
+        letter-spacing: -0.01em;
+      }
+    </style>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    <!-- HTMX 이벤트 확장 플러그인 -->
+    <script src="https://unpkg.com/htmx.org/dist/ext/event-header.js"></script>
+
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- 공통 스타일 -->
+    <style>
+      .sidebar {
+        height: calc(100vh - 64px - 40px);
+      }
+
+      .main-content {
+        height: calc(100vh - 64px - 40px);
+        overflow-y: auto;
+      }
+    </style>
+
+    {% block head %}{% endblock %}
+  </head>
+  <body class="bg-gray-100" hx-ext="event-header">
+    <!-- 헤더 / 로고 -->
+    <header class="bg-gray-900 text-white py-4 shadow-md">
+      <div class="container mx-auto flex justify-between items-center px-4">
+        <div class="flex items-center space-x-4">
+          <!-- 사이드바 토글 버튼 추가 -->
+          <button id="sidebar-toggle" class="text-white mr-2 p-1 hover:bg-gray-700 rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <h1 class="text-2xl font-bold">자막 인덱서</h1>
+          <span class="text-sm bg-blue-600 px-2 py-1 rounded">베타</span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="/login" class="hover:underline">로그인</a>
+          <a
+            href="/register"
+            class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
+            >회원가입</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <div class="container mx-auto flex">
+      <!-- 사이드바 (네비게이션) -->
+      <aside
+        id="main-sidebar"
+        class="w-1/5 bg-gray-800 text-white p-4 sidebar transition-all duration-300"
+        role="navigation"
+        aria-label="사이드바 네비게이션"
+      >
+        <h2 class="text-xl font-bold mb-4">메뉴</h2>
+        <nav>
+          <ul class="space-y-2">
+            <li>
+              <a href="/" class="block p-2 hover:bg-gray-700 rounded">홈</a>
+            </li>
+            <li>
+              <a href="/search" class="block p-2 hover:bg-gray-700 rounded"
+                >자막 검색</a
+              >
+            </li>
+            <li>
+              <a href="/dashboard" class="block p-2 hover:bg-gray-700 rounded"
+                >대시보드</a
+              >
+            </li>
+            <li>
+              <a
+                href="/indexing-process"
+                class="block p-2 hover:bg-gray-700 rounded"
+                >인덱싱 관리</a
+              >
+            </li>
+            <li>
+              <a href="/settings" class="block p-2 hover:bg-gray-700 rounded"
+                >환경 설정</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold mb-2">통계</h3>
+          <div
+            id="stats"
+            hx-get="/api/stats"
+            hx-trigger="load, stats-refresh from:body"
+            class="bg-gray-700 p-3 rounded text-sm"
+          >
+            <p>로딩 중...</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 메인 콘텐츠 -->
+      <main class="w-4/5 p-6 main-content" role="main">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    <!-- 푸터 -->
+    <footer
+      class="bg-gray-800 text-white p-2 text-center text-sm"
+      role="contentinfo"
+    >
+      <p>영어 자막 인덱서 - 2023</p>
+    </footer>
+    
+    <!-- 사이드바 토글 기능을 위한 JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('main-sidebar');
+        const mainContent = document.querySelector('main');
+        let sidebarVisible = true;
+        
+        // 로컬 스토리지에서 사이드바 상태 불러오기
+        const savedState = localStorage.getItem('sidebarVisible');
+        if (savedState !== null) {
+          sidebarVisible = savedState === 'true';
+          updateSidebarState();
+        }
+        
+        sidebarToggle.addEventListener('click', function() {
+          sidebarVisible = !sidebarVisible;
+          updateSidebarState();
+          
+          // 상태 저장
+          localStorage.setItem('sidebarVisible', sidebarVisible);
+        });
+        
+        function updateSidebarState() {
+          if (sidebarVisible) {
+            sidebar.classList.remove('w-0', 'p-0', 'overflow-hidden');
+            sidebar.classList.add('w-1/5');
+            mainContent.classList.remove('w-full');
+            mainContent.classList.add('w-4/5');
+          } else {
+            sidebar.classList.remove('w-1/5');
+            sidebar.classList.add('w-0', 'p-0', 'overflow-hidden');
+            mainContent.classList.remove('w-4/5');
+            mainContent.classList.add('w-full');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
