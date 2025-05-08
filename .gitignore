@@ -5,3 +5,4 @@ media_index.db
 *.db
 .DS_Store
 .env
+*.md
