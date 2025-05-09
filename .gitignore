@@ -1,8 +1,50 @@
+# Python-related files and directories
 venv/
 __pycache__/
 *.pyc
-media_index.db
+*.pyo
+*.pyd
 *.db
-.DS_Store
+*.sqlite3
+*.log
+*.pot
+*.mo
+
+# Environment and configuration files
 .env
+*.env
+*.ini
+*.cfg
+*.yaml
+*.yml
+
+# macOS-specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# Documentation
 *.md
+*.rst
+
+# IDE and editor-specific files
+.idea/
+.vscode/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Build and distribution directories
+build/
+dist/
+*.egg-info/
+.eggs/
+node_modules/
