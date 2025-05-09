@@ -32,7 +32,6 @@ __pycache__/
 *.orig
 
 # Documentation
-*.md
 *.rst
 
 # IDE and editor-specific files
