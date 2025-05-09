@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% block title %}자막 검색 필터{% endblock %}
+
+{% block head %}
+<style>
+  .stats-box {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+  
+  .scroll-container {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: white;
+    margin-top: 1rem;
+  }
+  
+  .item-row {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .item-row:last-child {
+    border-bottom: none;
+  }
+  
+  .item-row:hover {
+    background-color: #f9fafb;
+  }
+  
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .status-success {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+  
+  .status-processing {
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+
+  .status-stopped {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+
+  .highlight {
+    background-color: #fef3c7;
+  }
+  
+  .search-box {
+    position: relative;
+    width: 100%;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.75rem;
+    color: #9ca3af;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+  }
+  
+  .no-results {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: #6b7280;
+  }
+
+  .language-count {
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    color: #fff;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    background-color: #3b82f6;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">자막 인덱스</h1>
+
+<div class="stats-box">
+  <h2 class="text-xl font-semibold mb-4">언어 통계</h2>
+  <ul class="space-y-2">
+    {% for lang_code, count in language_stats.items() %}
+    <li class="flex items-center">
+      <span>{{ lang_code }}:</span>
+      <span class="language-count">{{ count }}개</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- 검색 필터 -->
+<div class="mb-4">
+  <div class="search-box">
+    <div class="search-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <input type="text" id="search-input" class="search-input" placeholder="검색어를 입력하세요..." />
+  </div>
+</div>
+
+<!-- 상태 표시 -->
+<div class="bg-white p-4 rounded shadow-md mb-4">
+  <div class="flex justify-between items-center mb-2">
+    <div>
+      <span class="font-medium">인덱싱 상태:</span>
+      {% if status.is_indexing %}
+        {% if status.is_paused %}
+          <span class="ml-2 status-badge status-stopped">일시정지</span>
+        {% else %}
+          <span class="ml-2 status-badge status-processing">진행 중</span>
+        {% endif %}
+      {% else %}
+        <span class="ml-2 status-badge status-success">완료</span>
+      {% endif %}
+    </div>
+    <div>
+      <span>{{ status.processed_files }}/{{ status.total_files }} 파일 처리됨</span>
+    </div>
+  </div>
+  
+  {% set progress = (status.processed_files / status.total_files * 100) if status.total_files > 0 else 0 %}
+  {% set progress_width = progress|round|int if status.total_files > 0 else 0 %}
+  
+  <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+    <div class="bg-blue-500 h-full" style="width: {{ progress_width }}%"></div>
+  </div>
+  
+  <div class="mt-2 text-sm text-gray-600">
+    <div>자막 수: {{ status.subtitle_count }}개</div>
+    {% if status.current_file and status.is_indexing %}
+    <div class="truncate">현재 파일: {{ status.current_file }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- 스크롤 가능한 자막 결과 목록 -->
+<div id="subtitle-list" class="scroll-container">
+  <div id="items-container">
+    {% if processed_files %}
+      {% for file in processed_files %}
+      <div class="item-row">
+        <div class="font-medium">{{ file.filename }}</div>
+        <div class="text-sm text-gray-600">처리됨: 자막 {{ file.subtitle_count }}개</div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="p-4 text-center text-gray-500">처리된 파일이 없습니다.</div>
+    {% endif %}
+  </div>
+  <div id="no-results" class="no-results hidden">
+    <p>검색 결과가 없습니다.</p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const itemsContainer = document.getElementById('items-container');
+    const noResults = document.getElementById('no-results');
+    const items = itemsContainer.querySelectorAll('.item-row');
+    
+    // 실시간 검색 필터 이벤트 리스너
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase().trim();
+      let matchCount = 0;
+      
+      // 각 항목을 검색어에 맞게 필터링
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        
+        // 검색어가 존재하고 항목 텍스트에 포함되는지 확인
+        if (searchTerm === '' || text.includes(searchTerm)) {
+          item.classList.remove('hidden');
+          
+          // 검색어 하이라이트 처리
+          if (searchTerm !== '') {
+            // 기존 하이라이트 제거
+            item.innerHTML = item.innerHTML.replace(/<mark class="highlight">(.*?)<\/mark>/g, '$1');
+            
+            // 텍스트 내용을 가져와 하이라이트 적용
+            const titleElement = item.querySelector('.font-medium');
+            const titleText = titleElement.textContent;
+            
+            // 대소문자 구분 없이 검색어 하이라이트
+            const regex = new RegExp(searchTerm, 'gi');
+            titleElement.innerHTML = titleText.replace(regex, match => 
+              `<mark class="highlight">${match}</mark>`
+            );
+          }
+          
+          matchCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+      
+      // 결과가 없을 때 메시지 표시
+      if (matchCount === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    });
+  });
+</script>
+{% endblock %} 

@@ -1,6 +1,79 @@
 {% extends "base.html" %} {% block title %}환경 설정{% endblock %} {% block head
 %}
 <script src="/static/js/settings.js"></script>
+<script>
+  // 인덱서 재시도 설정 저장
+  function saveRetrySettings() {
+    const retryCount = document.getElementById("indexer_retry_count").value;
+    const retryInterval = document.getElementById(
+      "indexer_retry_interval"
+    ).value;
+    const autoRestart = document.getElementById(
+      "auto_restart_indexing"
+    ).checked;
+
+    fetch("/api/settings/retry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        retry_count: parseInt(retryCount),
+        retry_interval: parseInt(retryInterval),
+        auto_restart: autoRestart,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // 성공 메시지 표시
+          const messageEl = document.getElementById("retry-settings-message");
+          messageEl.textContent = data.message;
+          messageEl.classList.remove("hidden");
+          messageEl.classList.remove("text-red-500");
+          messageEl.classList.add("text-green-500");
+
+          // 3초 후 메시지 숨기기
+          setTimeout(() => {
+            messageEl.classList.add("hidden");
+          }, 3000);
+        } else {
+          // 오류 메시지 표시
+          const messageEl = document.getElementById("retry-settings-message");
+          messageEl.textContent =
+            data.message || "설정 저장 중 오류가 발생했습니다.";
+          messageEl.classList.remove("hidden");
+          messageEl.classList.remove("text-green-500");
+          messageEl.classList.add("text-red-500");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        const messageEl = document.getElementById("retry-settings-message");
+        messageEl.textContent = "설정 저장 중 오류가 발생했습니다.";
+        messageEl.classList.remove("hidden");
+        messageEl.classList.remove("text-green-500");
+        messageEl.classList.add("text-red-500");
+      });
+
+    return false; // 폼 제출 방지
+  }
+
+  // 페이지 로드 시 현재 설정 가져오기
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/api/settings/retry")
+      .then((response) => response.json())
+      .then((data) => {
+        document.getElementById("indexer_retry_count").value =
+          data.indexer_retry_count;
+        document.getElementById("indexer_retry_interval").value =
+          data.indexer_retry_interval;
+        document.getElementById("auto_restart_indexing").checked =
+          data.auto_restart_indexing;
+      })
+      .catch((error) => console.error("Error:", error));
+  });
+</script>
 {% endblock %} {% block content %}
 <h1 class="text-3xl font-bold mb-6">환경 설정</h1>
 
@@ -10,15 +83,15 @@
     <div class="space-y-2">
       <h2 class="text-xl font-semibold">디렉토리 설정</h2>
       <div>
-        <label for="root_dir" class="block text-sm font-medium text-gray-700"
-          >루트 디렉토리:</label
+        <label for="media_dir" class="block text-sm font-medium text-gray-700"
+          >미디어 디렉토리:</label
         >
         <div class="mt-1 flex rounded-md shadow-sm">
           <input
             type="text"
-            name="root_dir"
-            id="root_dir"
-            value="{{ config.get('root_dir', '') }}"
+            name="media_dir"
+            id="media_dir"
+            value="{{ config.get('media_dir', '') }}"
             placeholder="/path/to/media"
             class="flex-1 min-w-0 block w-full px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
@@ -36,9 +109,57 @@
           </button>
         </div>
         <p class="mt-1 text-sm text-gray-500">
-          미디어 파일과 자막 파일이 있는 루트 디렉토리를 지정해주세요. 하위
-          폴더까지 모두 스캔됩니다. 데이터베이스 파일이 이 위치에 자동으로
-          저장됩니다.
+          미디어 파일과 자막 파일이 있는 디렉토리를 지정해주세요. 하위 폴더까지
+          모두 스캔됩니다.
+        </p>
+      </div>
+
+      <!-- 데이터베이스 경로 설정 추가 -->
+      <div class="mt-4">
+        <label for="db_path" class="block text-sm font-medium text-gray-700"
+          >데이터베이스 저장 경로:</label
+        >
+        <div class="mt-1 flex rounded-md shadow-sm">
+          <input
+            type="text"
+            name="db_path"
+            id="db_path"
+            value="{{ config.get('db_path', 'media_index.db') }}"
+            placeholder="media_index.db"
+            class="flex-1 min-w-0 block w-full px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="button"
+            id="browse-db-button"
+            class="inline-flex items-center px-3 py-2 border border-l-0 border-gray-300 bg-gray-50 text-gray-700 rounded-r-md hover:bg-gray-100"
+            hx-get="/api/browse?file_type=db"
+            hx-target="#directory-browser-modal-content"
+            hx-swap="innerHTML"
+            onclick="document.getElementById('directory-browser-modal').classList.remove('hidden'); document.getElementById('directory-browser-modal-title').textContent = 'DB 파일 경로 선택';"
+          >
+            찾아보기...
+          </button>
+        </div>
+        <div class="flex items-start mt-2">
+          <div class="flex items-center h-5">
+            <input type="checkbox" id="use_absolute_path"
+            name="use_absolute_path" class="h-4 w-4 text-blue-600
+            focus:ring-blue-500 border-gray-300 rounded" {{ 'checked' if
+            config.get('use_absolute_path', False) else '' }} />
+          </div>
+          <div class="ml-3 text-sm">
+            <label for="use_absolute_path" class="font-medium text-gray-700"
+              >절대 경로 사용</label
+            >
+            <p class="text-gray-500">
+              체크하지 않으면 미디어 디렉토리를 기준으로 상대 경로가 사용됩니다.
+              (기본값: 미체크)
+            </p>
+          </div>
+        </div>
+        <p class="mt-1 text-sm text-gray-500">
+          데이터베이스 파일(.db)의 저장 위치를 지정해주세요. 기본값은 미디어
+          디렉토리에 "media_index.db" 파일로 저장됩니다.
         </p>
       </div>
     </div>
@@ -53,6 +174,7 @@
       >
         <div class="mt-3">
           <h3
+            id="directory-browser-modal-title"
             class="text-lg leading-6 font-medium text-gray-900 text-center mb-4"
           >
             디렉토리 선택
@@ -64,18 +186,15 @@
             <!-- 이곳에 디렉토리 내용이 로드됩니다 -->
           </div>
 
-          <div class="flex justify-between mt-5 border-t pt-4">
-            <div>
+          <div class="flex justify-end mt-5 border-t pt-4">
               <button
                 type="button"
-                id="use-current-dir-btn"
+              id="select-dir-btn"
                 onclick="saveSelectedDirectory()"
                 class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mr-2"
               >
-                현재 경로 사용하기
+              선택
               </button>
-            </div>
-            <div>
               <button
                 type="button"
                 id="cancel-modal-btn"
@@ -83,7 +202,6 @@
               >
                 취소
               </button>
-            </div>
           </div>
         </div>
       </div>
@@ -96,85 +214,57 @@
       <!-- 인덱싱 전략 설정 추가 -->
       <div class="pt-4 border-t mt-4">
         <label class="block text-sm font-medium text-gray-700 mb-2"
-          >인덱싱 전략:</label
+          >인덱싱 로직 설명:</label
         >
 
-        <div class="space-y-3">
-          <div class="flex items-start">
-            <input type="radio" name="indexing_strategy" id="strategy_standard"
-            value="standard" {{ 'checked' if config.get('indexing_strategy',
-            'standard') == 'standard' else '' }} class="mt-1 mr-2" />
-            <div>
-              <label for="strategy_standard" class="font-medium"
-                >표준 처리 (권장)</label
-              >
-              <p class="text-sm text-gray-500">
-                자막을 파일별로 순차 처리합니다. 대부분의 경우 적합한 기본
-                설정입니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start">
-            <input type="radio" name="indexing_strategy" id="strategy_batch"
-            value="batch" {{ 'checked' if config.get('indexing_strategy') ==
-            'batch' else '' }} class="mt-1 mr-2" />
-            <div>
-              <label for="strategy_batch" class="font-medium">일괄 처리</label>
-              <p class="text-sm text-gray-500">
-                자막을 일괄적으로 DB에 저장 후 처리합니다. 대용량 처리에
-                효율적이지만 메모리 사용량이 증가합니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start">
-            <input type="radio" name="indexing_strategy" id="strategy_parallel"
-            value="parallel" {{ 'checked' if config.get('indexing_strategy') ==
-            'parallel' else '' }} class="mt-1 mr-2" />
-            <div>
-              <label for="strategy_parallel" class="font-medium"
-                >병렬 처리</label
-              >
-              <p class="text-sm text-gray-500">
-                여러 자막을 동시에 병렬로 처리합니다. 멀티코어 CPU에서 속도가
-                크게 향상되지만 CPU 사용량이 높아집니다.
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start">
-            <input type="radio" name="indexing_strategy"
-            id="strategy_delayed_language" value="delayed_language" {{ 'checked'
-            if config.get('indexing_strategy') == 'delayed_language' else '' }}
-            class="mt-1 mr-2" />
-            <div>
-              <label for="strategy_delayed_language" class="font-medium"
-                >지연된 언어 감지</label
-              >
-              <p class="text-sm text-gray-500">
-                먼저 모든 자막을 DB에 저장한 후 나중에 비영어 자막을
-                필터링합니다. 인덱싱 속도는 빠르지만 초기 DB 크기가 커집니다.
-              </p>
-            </div>
-          </div>
+        <div class="bg-blue-50 p-4 rounded-md mb-4">
+          <h3 class="font-medium text-blue-800 mb-2">인덱싱 기본 원리</h3>
+          <ul class="text-sm text-blue-700 space-y-2">
+            <li>
+              <span class="font-semibold">파일 매칭:</span> 미디어 파일과 자막
+              파일의 이름이 일치하는 파일만 인덱싱됩니다.
+            </li>
+            <li>
+              <span class="font-semibold">자막 언어 처리:</span> 영어가 아닌
+              자막은 파일 이름 뒤에 "_언어코드" 형식으로 저장됩니다. (예:
+              movie_ko.srt)
+            </li>
+            <li>
+              <span class="font-semibold">처리 방식:</span> 자막 파일은
+              순차적으로 처리되며, 인코딩 문제는 자동으로 처리됩니다.
+            </li>
+          </ul>
         </div>
 
-        <div class="pt-2 text-sm text-gray-600">
-          <p class="font-semibold">참고:</p>
-          <p>
-            병렬 처리 옵션은 CPU 코어 수에 따라 성능이 달라집니다. 최대 스레드
-            수:
+        <div class="bg-yellow-50 p-4 rounded-md">
+          <h3 class="font-medium text-yellow-800 mb-2">성능 최적화 설정</h3>
+          <p class="text-sm text-yellow-700 mb-3">
+            병렬 처리를 활용하여 인덱싱 성능을 향상시킬 수 있습니다. 적절한
+            스레드 수를 설정하세요.
+          </p>
+          <div class="flex items-center">
+            <label
+              for="max_threads"
+              class="text-sm font-medium text-yellow-800 mr-2"
+              >최대 스레드 수:</label
+            >
             <input
               type="number"
               name="max_threads"
-              min="2"
+              id="max_threads"
+              min="1"
               max="16"
               value="{{ config.get('max_threads', '4') }}"
-              class="w-16 inline-block border rounded px-2 py-1"
+              class="w-16 border rounded px-2 py-1"
             />
-          </p>
+            <span class="text-xs text-yellow-600 ml-2"
+              >CPU 코어 수에 따라 적절하게 설정하세요. (권장: 2-8)</span
+            >
+          </div>
         </div>
+
+        <!-- 기존 라디오 버튼 선택지는 제거하고, 설명만 표시 -->
+        <input type="hidden" name="indexing_strategy" value="standard" />
       </div>
 
       <div class="pt-2">
@@ -293,12 +383,424 @@
         <input
           type="hidden"
           id="media_extensions_hidden"
-          name="media_extensions_text"
+          name="media_extensions_hidden"
           value="{{ config.get('media_extensions', '.mp4,.mkv,.avi,.mp3,.wav')|join(',') }}"
         />
+      </div>
+    </div>
 
-        <!-- DB 경로에 대한 hidden 필드 추가 (루트 디렉토리에 고정) -->
-        <input type="hidden" name="db_path" value="media_index.db" />
+    <!-- 인덱싱 재시도 설정 추가 -->
+    <div class="space-y-2 mt-6 pt-6 border-t">
+      <h2 class="text-xl font-semibold">인덱싱 재시도 설정</h2>
+      <div class="bg-gray-50 p-4 rounded-md">
+        <p class="text-sm text-gray-600 mb-4">
+          인덱싱 작업 중 오류가 발생했을 때 자동으로 재시도하는 설정을
+          관리합니다. 인덱싱이 자주 중단되는 경우 재시도 횟수와 간격을 조정할 수
+          있습니다.
+        </p>
+
+        <form onsubmit="return saveRetrySettings()" class="space-y-4">
+          <!-- 최대 재시도 횟수 -->
+          <div>
+            <label
+              for="indexer_retry_count"
+              class="block text-sm font-medium text-gray-700 mb-1"
+            >
+              최대 재시도 횟수:
+            </label>
+            <div class="flex items-center">
+              <input
+                type="range"
+                min="0"
+                max="10"
+                id="indexer_retry_count"
+                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mr-3"
+                oninput="document.getElementById('retry_count_value').textContent = this.value"
+              />
+              <span
+                id="retry_count_value"
+                class="text-sm font-medium w-8 text-center"
+                >3</span
+              >
+            </div>
+            <p class="text-xs text-gray-500 mt-1">
+              0으로 설정하면 재시도하지 않습니다. 최대 10회까지 설정 가능합니다.
+            </p>
+          </div>
+
+          <!-- 재시도 간격 -->
+          <div>
+            <label
+              for="indexer_retry_interval"
+              class="block text-sm font-medium text-gray-700 mb-1"
+            >
+              재시도 간격(초):
+            </label>
+            <div class="flex items-center">
+              <input
+                type="range"
+                min="5"
+                max="60"
+                id="indexer_retry_interval"
+                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mr-3"
+                oninput="document.getElementById('retry_interval_value').textContent = this.value"
+              />
+              <span
+                id="retry_interval_value"
+                class="text-sm font-medium w-8 text-center"
+                >10</span
+              >
+            </div>
+            <p class="text-xs text-gray-500 mt-1">
+              재시도 간격은 5초에서 60초까지 설정할 수 있습니다.
+            </p>
+          </div>
+
+          <!-- 자동 재시작 활성화 체크박스 -->
+          <div class="flex items-start">
+            <div class="flex items-center h-5">
+              <input
+                type="checkbox"
+                id="auto_restart_indexing"
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+            </div>
+            <div class="ml-3 text-sm">
+              <label
+                for="auto_restart_indexing"
+                class="font-medium text-gray-700"
+                >자동 재시작 활성화</label
+              >
+              <p class="text-gray-500">
+                이 옵션을 비활성화하면 오류 발생 시 인덱싱이 즉시 중단됩니다.
+                (기본값: 비활성화 - 무한 루프 방지)
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="submit"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              재시도 설정 저장
+            </button>
+            <p
+              id="retry-settings-message"
+              class="mt-2 text-sm text-green-500 hidden"
+            ></p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 메뉴 관리 섹션 추가 -->
+    <div class="space-y-2 mt-6 pt-6 border-t">
+      <h2 class="text-xl font-semibold">메뉴 관리</h2>
+      <div class="bg-gray-50 p-4 rounded-md">
+        <p class="text-sm text-gray-600 mb-4">
+          사이드바에 표시할 메뉴를 선택하고 순서를 조정합니다. 체크박스를 클릭하여 메뉴를 표시하거나 숨길 수 있습니다.
+        </p>
+        
+        <div id="menu-management-form" class="space-y-6">
+          <!-- 기본 메뉴 -->
+          <div class="border border-gray-200 rounded-md p-4">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  type="checkbox"
+                  id="menu_category_basic"
+                  class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded menu-category-toggle"
+                  checked
+                />
+              </div>
+              <div class="ml-3">
+                <label
+                  for="menu_category_basic"
+                  class="font-medium text-gray-700 text-lg"
+                  >기본 메뉴</label
+                >
+              </div>
+            </div>
+            
+            <div class="mt-3 ml-6 space-y-2 menu-items">
+              <div class="flex items-center justify-between p-2 bg-white rounded-md shadow-sm">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="menu_home"
+                    name="menu_items"
+                    value="home"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked
+                  />
+                  <label for="menu_home" class="ml-2 text-gray-700">홈</label>
+                </div>
+                <div class="flex items-center">
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between p-2 bg-white rounded-md shadow-sm">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="menu_search"
+                    name="menu_items"
+                    value="search"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked
+                  />
+                  <label for="menu_search" class="ml-2 text-gray-700">자막 검색</label>
+                </div>
+                <div class="flex items-center">
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between p-2 bg-white rounded-md shadow-sm">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="menu_dashboard"
+                    name="menu_items"
+                    value="dashboard"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked
+                  />
+                  <label for="menu_dashboard" class="ml-2 text-gray-700">대시보드</label>
+                </div>
+                <div class="flex items-center">
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 자막 관리 메뉴 -->
+          <div class="border border-gray-200 rounded-md p-4">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  type="checkbox"
+                  id="menu_category_subtitle"
+                  class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded menu-category-toggle"
+                  checked
+                />
+              </div>
+              <div class="ml-3">
+                <label
+                  for="menu_category_subtitle"
+                  class="font-medium text-gray-700 text-lg"
+                  >자막 관리</label
+                >
+              </div>
+            </div>
+            
+            <div class="mt-3 ml-6 space-y-2 menu-items">
+              <div class="flex items-center justify-between p-2 bg-white rounded-md shadow-sm">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="menu_subtitle_encoding"
+                    name="menu_items"
+                    value="subtitle_encoding"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked
+                  />
+                  <label for="menu_subtitle_encoding" class="ml-2 text-gray-700">자막 인코딩 변환</label>
+                </div>
+                <div class="flex items-center">
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between p-2 bg-white rounded-md shadow-sm">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="menu_subtitle_encoding_status"
+                    name="menu_items"
+                    value="subtitle_encoding_status"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked
+                  />
+                  <label for="menu_subtitle_encoding_status" class="ml-2 text-gray-700">자막 인코딩 현황</label>
+                </div>
+                <div class="flex items-center">
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 시스템 관리 메뉴 -->
+          <div class="border border-gray-200 rounded-md p-4">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  type="checkbox"
+                  id="menu_category_system"
+                  class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded menu-category-toggle"
+                  checked
+                />
+              </div>
+              <div class="ml-3">
+                <label
+                  for="menu_category_system"
+                  class="font-medium text-gray-700 text-lg"
+                  >시스템 관리</label
+                >
+              </div>
+            </div>
+            
+            <div class="mt-3 ml-6 space-y-2 menu-items">
+              <div class="flex items-center justify-between p-2 bg-white rounded-md shadow-sm">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="menu_indexing_process"
+                    name="menu_items"
+                    value="indexing_process"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked
+                  />
+                  <label for="menu_indexing_process" class="ml-2 text-gray-700">인덱싱 프로세스</label>
+                </div>
+                <div class="flex items-center">
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between p-2 bg-white rounded-md shadow-sm">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="menu_database"
+                    name="menu_items"
+                    value="database"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked
+                  />
+                  <label for="menu_database" class="ml-2 text-gray-700">데이터베이스 관리</label>
+                </div>
+                <div class="flex items-center">
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between p-2 bg-white rounded-md shadow-sm">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="menu_settings"
+                    name="menu_items"
+                    value="settings"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    checked
+                  />
+                  <label for="menu_settings" class="ml-2 text-gray-700">환경 설정</label>
+                </div>
+                <div class="flex items-center">
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-up">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                  <button type="button" class="text-gray-400 hover:text-gray-600 p-1 menu-move-down">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex justify-end space-x-2">
+            <button
+              type="button"
+              id="reset-menu-btn"
+              class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded"
+            >
+              기본값으로 복원
+            </button>
+            <button
+              type="button"
+              id="save-menu-btn"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              메뉴 설정 저장
+            </button>
+          </div>
+          
+          <p id="menu-settings-message" class="text-sm text-green-500 hidden"></p>
+          
+          <input type="hidden" id="menu_settings_json" name="menu_settings_json" value="" />
+        </div>
       </div>
     </div>
 
@@ -321,7 +823,9 @@
       </button>
 
       <button
-        type="submit"
+        type="button"
+        id="save-settings-btn"
+        onclick="document.querySelector('form').submit();"
         class="ml-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
       >
         설정 저장
@@ -413,21 +917,21 @@
         </svg>
       </div>
       <h3 class="text-lg leading-6 font-medium text-gray-900 mt-2">
-        루트 디렉토리 변경 감지
+        미디어 디렉토리 변경 감지
       </h3>
       <div class="mt-2 px-7 py-3">
         <p class="text-sm text-gray-600 mb-2">
-          루트 디렉토리가 변경되었습니다:
+          미디어 디렉토리가 변경되었습니다:
         </p>
-        <p class="text-xs text-gray-500 mb-1">이전: {{ old_root_dir }}</p>
-        <p class="text-xs text-gray-500">새 경로: {{ new_root_dir }}</p>
+        <p class="text-xs text-gray-500 mb-1">이전: {{ old_media_dir }}</p>
+        <p class="text-xs text-gray-500">새 경로: {{ new_media_dir }}</p>
         <p class="text-sm text-gray-600 mt-3 font-medium">
           새 경로에 맞게 DB를 초기화하고 재인덱싱이 필요합니다.
         </p>
       </div>
       <form method="post" action="/settings" class="items-center px-4 py-3">
         <!-- 기존 폼 필드 복사 -->
-        <input type="hidden" name="root_dir" value="{{ new_root_dir }}" />
+        <input type="hidden" name="media_dir" value="{{ new_media_dir }}" />
         <input type="hidden" name="db_path" value="media_index.db" />
         <input
           type="hidden"
@@ -441,7 +945,7 @@
         />
         <input
           type="hidden"
-          name="media_extensions_text"
+          name="media_extensions_hidden"
           value="{{ config.get('media_extensions', '.mp4,.mkv,.avi,.mp3,.wav')|join(',') }}"
         />
 

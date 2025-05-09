@@ -5,9 +5,14 @@
 """
 
 import math
+import re
 from typing import Dict, List, Any, Optional, Tuple
 from app.database import db
 from app.models.subtitle import Subtitle, SearchResult
+from app.utils.logging import setup_module_logger
+
+# 로거 초기화
+logger = setup_module_logger("services.search")
 
 
 class SearchService:
@@ -20,7 +25,8 @@ class SearchService:
         start_time: Optional[str] = None,
         end_time: Optional[str] = None,
         page: int = 1,
-        per_page: int = 50
+        per_page: int = 50,
+        search_method: Optional[str] = None  # 파라미터 추가
     ) -> SearchResult:
         """
         자막 내용 검색
@@ -32,6 +38,7 @@ class SearchService:
             end_time: 종료 시간 필터
             page: 페이지 번호
             per_page: 페이지당 결과 수
+            search_method: 검색 방식 ('like' 또는 'fts')
             
         Returns:
             SearchResult: 검색 결과 및 메타데이터
@@ -41,8 +48,9 @@ class SearchService:
         # 계산된 total_count는 근사치일 수 있음
         total_count = SearchService._estimate_total_count(query, lang, start_time, end_time)
         
-        # 실제 검색 수행
-        results = db.search_subtitles(
+        # 실제 검색 수행 - database.subtitles 모듈 함수 사용
+        from app.database.subtitles import search_subtitles as db_search_subtitles
+        results = db_search_subtitles(
             query=query,
             lang=lang,
             start_time=start_time,
@@ -84,8 +92,9 @@ class SearchService:
         start_time: Optional[str] = None,
         end_time: Optional[str] = None
     ) -> int:
-        """검색 조건에 맞는 총 결과 수 추정 (데이터베이스 계층에 위임)"""
-        return db.estimate_total_count(query, lang, start_time, end_time)
+        """검색 조건에 맞는 총 결과 수 추정 - database.subtitles 모듈 함수 사용"""
+        from app.database.subtitles import estimate_total_count
+        return estimate_total_count(query, lang, start_time, end_time)
     
     @staticmethod
     def format_search_results_html(results: SearchResult) -> str:

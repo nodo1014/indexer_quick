@@ -1,7 +1,10 @@
 """
-메인 애플리케이션 모듈
-
-FastAPI 애플리케이션을 초기화하고 필요한 설정과 라우터를 등록합니다.
+전체 구조는 `project_structure.txt` 참조. 구조가 바뀐 경우 project_structure.txt를 수정해주세요.
+구조화 원칙 (AI 및 협업자용):
+- routes/: 직접 DB 접근 금지 → 반드시 services 또는 db 모듈 경유
+- subtitle/: SRT, VTT 등 포맷 파싱 및 변환만 담당
+- database/: 모든 DB 함수는 이곳에 집중
+- main.py는 FastAPI 앱 진입점으로 라우터와 초기화 코드만 포함
 """
 
 from fastapi import FastAPI, Request, Depends, Form, Body
@@ -12,11 +15,15 @@ from pathlib import Path
 import os
 import logging
 from typing import Dict, Any, Optional
+from starlette.middleware.sessions import SessionMiddleware
 
 # 내부 모듈 임포트
-from app.config import config
+from app.config import config, get_config, load_config
 from app.database import db
-from app.routes import search, stats, indexing
+from app.database.schema import init_db
+from app.database.connection import get_connection, close_connection  # 풀링 제거, 단일 연결 함수로 변경
+from app.routes import search, stats, indexing, settings, database  # database 라우트 추가
+from app.routes import docs  # 문서 라우터 추가
 from app.services.indexer import indexer_service
 
 
@@ -26,6 +33,9 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger("app")
+
+# 자동 작업 비활성화 설정 (개발 모드에서 사용)
+DISABLE_AUTO_TASKS = True  # 자동 워치독, 인덱싱 등 무거운 작업 실행 여부
 
 # FastAPI 애플리케이션 생성
 app = FastAPI(
@@ -37,12 +47,8 @@ app = FastAPI(
     openapi_url=None  # OpenAPI 스키마 비활성화
 )
 
-# 개발 모드에서만 API 문서 활성화 (필요한 경우 주석 해제)
-# from app.config import config
-# if config.get("dev_mode", False):
-#     app.docs_url = "/api/docs"
-#     app.redoc_url = "/api/redoc"
-#     app.openapi_url = "/api/openapi.json"
+# 세션 미들웨어 추가 (설정 저장 등에 필요)
+app.add_middleware(SessionMiddleware, secret_key="some-random-string-for-sessions")
 
 # 기본 경로 설정
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -53,38 +59,108 @@ TEMPLATES_DIR = BASE_DIR / "templates"
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
+# 메뉴 설정을 모든 템플릿에 제공하는 컨텍스트 프로세서
+@app.middleware("http")
+async def add_template_context(request: Request, call_next):
+    """모든 템플릿에 공통 컨텍스트를 추가하는 미들웨어"""
+    # 설정 데이터 가져오기
+    config_data = get_config()
+    
+    # 메뉴 설정 추가
+    menu_settings = config_data.get("menu_settings", {})
+    request.state.menu_settings = menu_settings
+    
+    # 추가 컨텍스트 데이터 설정
+    request.state.app_version = app.version
+    request.state.config = config_data
+    
+    # 원본 핸들러 호출
+    try:
+        response = await call_next(request)
+        return response
+    except Exception as e:
+        logger.error(f"요청 처리 중 오류 발생: {e}")
+        import traceback
+        logger.error(traceback.format_exc())
+        raise
+
 # 라우터 등록
 app.include_router(search.router)
 app.include_router(stats.router)
 app.include_router(indexing.router)
+app.include_router(settings.router)  # 설정 페이지 라우터 등록
+app.include_router(settings.api_router)  # 설정 API 라우터 등록
+
+# 데이터베이스 관리 라우터 등록
+app.include_router(database.router)
+
+# 문서 라우터 등록
+app.include_router(docs.router)
 
 
 @app.on_event("startup")
 async def startup_event():
     """애플리케이션 시작 시 실행할 작업들"""
     try:
-        # 데이터베이스 초기화
-        db.init_db()
+        # 데이터베이스 커넥션 초기화 (필수 기능이므로 항상 실행)
+        conn = get_connection()
+        logger.info("데이터베이스 연결이 초기화되었습니다.")
+        
+        # 데이터베이스 초기화 (필수 기능이므로 항상 실행)
+        init_db()
         logger.info("데이터베이스가 성공적으로 초기화되었습니다.")
         
-        # 인덱서 초기화 상태 확인
-        indexer_status = indexer_service.get_status()
-        if indexer_status.get("is_indexing", False):
-            logger.info("인덱싱 상태 확인 - 진행 중인 인덱싱이 있습니다.")
+
+        
+        # 무거운 자동 작업은 설정에 따라 선택적으로 실행
+        if not DISABLE_AUTO_TASKS:
+            # FTS 인덱스 상태 확인 및 필요시 복구
+            logger.info("FTS 인덱스 상태 확인 중...")
+            try:
+                from app.services.indexer import update_fts_index
+                update_result = update_fts_index(force=False)  # 필요한 경우에만 재구축
+                if update_result:
+                    logger.info("FTS 인덱스가 정상 상태입니다.")
+                else:
+                    logger.warning("FTS 인덱스 상태가 불안정합니다. 백그라운드에서 재구축이 필요할 수 있습니다.")
+            except Exception as e:
+                logger.error(f"FTS 인덱스 상태 확인 중 오류 발생: {e}")
+            
+            # 인덱서 초기화 상태 확인
+            indexer_status = indexer_service.get_status()
+            if indexer_status.get("is_indexing", False):
+                logger.info("인덱싱 상태 확인 - 진행 중인 인덱싱이 있습니다.")
+            else:
+                logger.info("인덱싱 상태 확인 - 진행 중인 인덱싱이 없습니다.")
+            
+
         else:
-            logger.info("인덱싱 상태 확인 - 진행 중인 인덱싱이 없습니다.")
+            logger.info("자동 워치독 및 무거운 작업이 비활성화되어 있습니다. 필요할 때 수동으로 활성화 가능합니다.")
         
     except Exception as e:
         logger.error(f"애플리케이션 시작 중 오류 발생: {e}")
+        import traceback
+        logger.error(traceback.format_exc())
 
 
-@app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
-    """루트 페이지 (메인 페이지) 반환"""
-    return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "config": config.data}
-    )
+@app.on_event("shutdown")
+async def shutdown_event():
+    """애플리케이션 종료 시 실행할 작업들"""
+    try:
+        # 데이터베이스 연결 종료
+        close_connection()
+        logger.info("데이터베이스 연결을 정상적으로 종료했습니다.")
+        
+
+        
+    except Exception as e:
+        logger.error(f"애플리케이션 종료 중 오류 발생: {e}")
+
+
+@app.get("/", response_class=RedirectResponse)
+async def read_root():
+    """루트 페이지를 인덱싱 관리 페이지로 리다이렉트"""
+    return "/indexing-process"
 
 
 @app.get("/search", response_class=HTMLResponse)
@@ -105,21 +181,20 @@ async def dashboard_page(request: Request):
     )
 
 
-@app.get("/settings", response_class=HTMLResponse)
-async def settings_page(request: Request):
-    """설정 페이지 반환"""
-    return templates.TemplateResponse(
-        "settings.html",
-        {"request": request, "config": config.data}
-    )
+# 설정 페이지는 이제 settings.py 모듈에서 처리합니다.
 
 
 @app.post("/settings")
 async def save_settings(
     request: Request,
-    root_dir: str = Form(...),
+    media_dir: str = Form(...),
+    db_path: str = Form("media_index.db"),
+    use_absolute_path: bool = Form(False),
     max_threads: Optional[int] = Form(None),
-    media_extensions_hidden: str = Form("")
+    media_extensions_hidden: str = Form(""),
+    reset_db: str = Form("false"),
+    indexing_strategy: str = Form("standard"),
+    skip_db_reset_check: Optional[str] = Form(None)
 ):
     """
     설정 저장 엔드포인트
@@ -128,16 +203,23 @@ async def save_settings(
     """
     try:
         # 폼 데이터 처리
+        logger.info(f"설정 저장 요청 받음: media_dir={media_dir}, db_path={db_path}, media_extensions_hidden={media_extensions_hidden}")
+        
         if media_extensions_hidden:
             media_extensions = media_extensions_hidden.split(",")
+            logger.info(f"처리된 미디어 확장자: {media_extensions}")
         else:
             media_extensions = config.get("media_extensions", [])
+            logger.info(f"미디어 확장자 값이 없어 기존 설정 사용: {media_extensions}")
         
         # 설정 업데이트
         config.update({
-            "root_dir": root_dir,
+            "media_dir": media_dir,
+            "db_path": db_path,
+            "use_absolute_path": use_absolute_path,
             "max_threads": max_threads or config.get("max_threads", 4),
-            "media_extensions": media_extensions
+            "media_extensions": media_extensions,
+            "indexing_strategy": indexing_strategy
         })
         
         # 설정 저장
@@ -172,7 +254,7 @@ async def start_indexing(request: Request):
         # 인덱싱 시작
         if reset_db:
             logger.info("DB 초기화 요청으로 데이터베이스를 초기화합니다.")
-            db.reset_db()
+            db.reset_database()
         
         result = indexer_service.start_indexing(incremental=incremental)
         
@@ -201,6 +283,33 @@ async def indexing_process_page(request: Request):
             "status": indexer_service.get_status()
         }
     )
+
+
+@app.get("/indexing-filter", response_class=HTMLResponse) 
+async def indexing_filter_page(request: Request):
+    """인덱싱 필터 페이지 반환"""
+    # 인덱싱 상태 정보 가져오기
+    status = indexer_service.get_status()
+    
+    # DB에서 언어별 자막 개수 가져오기
+    language_stats = db.get_language_stats()
+    
+    # 처리된 파일 목록 가져오기 (최대 100개)
+    processed_files = db.get_processed_files(limit=100)
+    
+    return templates.TemplateResponse(
+        "indexing_filter.html",
+        {
+            "request": request,
+            "config": config.data,
+            "status": status,
+            "language_stats": language_stats,
+            "processed_files": processed_files
+        }
+    )
+
+
+# 데이터베이스 관리 페이지 기능 제거
 
 
 # AI 인터페이스 페이지 라우트 추가
@@ -319,7 +428,7 @@ async def ai_system_info():
         return {
             "error": f"시스템 정보를 로드할 수 없습니다: {str(e)}",
             "config": {
-                "root_directory": config.get("root_dir", ""),
+                "media_directory": config.get("root_dir", ""),
                 "database_path": config.get("db_path", "media_index.db"),
                 "media_extensions": config.get("media_extensions", [".mp4", ".mkv", ".avi"]),
                 "indexing_strategy": config.get("indexing_strategy", "standard"),

@@ -9,6 +9,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   // 토글 버튼 설정
   setupToggleButton();
+  
+  // 로그 필터 설정
+  setupLogFilter();
 
   // htmx 이벤트: 인덱싱 작업 시작 시 트리거
   document.body.addEventListener("htmx:afterRequest", function (event) {
@@ -23,13 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("인덱싱 요청 처리됨:", event.detail.path);
 
       // 인덱싱 상태 업데이트 영역이 있으면 HTMX를 통해 새로고침 트리거
-      const statusElement = document.getElementById("indexing-status");
-      if (statusElement) {
-        // htmx를 통해 인덱싱 상태를 새로고침 (데이터 속성이 설정된 경우)
-        if (statusElement.getAttribute("hx-get")) {
-          htmx.trigger(statusElement, "load");
-        }
-      }
+      refreshIndexingUI();
 
       // 토글 버튼 상태 업데이트
       updateToggleButton(event.detail.path);
@@ -38,7 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 인덱싱 상태 영역 변경 감지
   document.body.addEventListener("htmx:afterSwap", function (event) {
+    // 로그 영역이 업데이트되면 필터 적용
     if (event.detail.target.id === "indexing-status") {
+      applyLogFilter();
+    }
+    
+    // 상태 요약 영역이 업데이트되면 토글 버튼 상태 업데이트
+    if (event.detail.target.id === "indexing-summary") {
       // 상태 카드를 확인하여 현재 인덱싱 상태 파악
       const statusCard = event.detail.target.querySelector(
         ".indexing-status-card"
@@ -54,6 +57,67 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+/**
+ * 인덱싱 UI 새로고침
+ * 상태 요약과 로그 영역을 모두 갱신
+ */
+function refreshIndexingUI() {
+  // 상태 요약 영역 새로고침
+  const summaryElement = document.getElementById("indexing-summary");
+  if (summaryElement && summaryElement.getAttribute("hx-get")) {
+    htmx.trigger(summaryElement, "load");
+  }
+  
+  // 로그 영역 새로고침
+  const statusElement = document.getElementById("indexing-status");
+  if (statusElement && statusElement.getAttribute("hx-get")) {
+    htmx.trigger(statusElement, "load");
+  }
+}
+
+/**
+ * 로그 필터 설정
+ */
+function setupLogFilter() {
+  const filterInput = document.getElementById('log-filter');
+  if (!filterInput) return;
+  
+  // 입력 이벤트에 필터링 기능 연결
+  filterInput.addEventListener('input', applyLogFilter);
+}
+
+/**
+ * 로그 필터 적용
+ */
+function applyLogFilter() {
+  const filterInput = document.getElementById('log-filter');
+  const logContainer = document.getElementById('indexing-status');
+  if (!filterInput || !logContainer) return;
+  
+  const filterText = filterInput.value.trim().toLowerCase();
+  
+  // 필터가 비어있으면 모든 로그 표시
+  if (!filterText) {
+    // 모든 로그 항목 표시
+    const logItems = logContainer.querySelectorAll('.log-item, .log-line');
+    logItems.forEach(item => {
+      item.style.display = '';
+    });
+    return;
+  }
+  
+  // 로그 항목 필터링
+  const logItems = logContainer.querySelectorAll('.log-item, .log-line');
+  logItems.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    if (text.includes(filterText)) {
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
 
 /**
  * 토글 버튼 설정 및 이벤트 리스너 등록

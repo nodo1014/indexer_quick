@@ -79,8 +79,8 @@ content %}
                     <div class="col-md-6">
                         <h5>Configuration</h5>
                         <ul>
-                            <li><strong>Root Directory:</strong> ${
-                              data.config.root_directory
+                            <li><strong>미디어 디렉토리:</strong> ${
+                              data.config.media_directory || data.config.root_directory
                             }</li>
                             <li><strong>Database Path:</strong> ${
                               data.config.database_path

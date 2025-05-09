@@ -1,0 +1,81 @@
+<!-- 
+  이 파일은 HTMX 부분 템플릿으로, 자막 파일 목록을 표시합니다.
+  JavaScript 없이 HTMX만으로 동작합니다.
+-->
+<table class="min-w-full divide-y divide-gray-200">
+  <thead class="bg-gray-50">
+    <tr>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">파일명</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">미디어 파일</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">인코딩</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">다중 자막</th>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">작업</th>
+    </tr>
+  </thead>
+  <tbody class="bg-white divide-y divide-gray-200">
+    {% if matches %}
+      {% for match in matches %}
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            {{ match.subtitle_path | basename }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {% if match.from_media %}
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2">
+                미디어 추출: {{ match.media_source }}
+              </span>
+            {% endif %}
+            {% if match.media_path %}
+              {{ match.media_path | basename }}
+            {% else %}
+              <span class="text-yellow-500">매칭 없음</span>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {{ match.encoding or '감지 안됨' }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm">
+            {% if match.status == '✅' %}
+              <span class="text-green-500">{{ match.status }}</span>
+            {% elif match.status == '❌' %}
+              <span class="text-red-500">{{ match.status }}</span>
+            {% elif match.status == '⚠️' %}
+              <span class="text-yellow-500">{{ match.status }}</span>
+            {% else %}
+              <span class="text-blue-500">{{ match.status }}</span>
+            {% endif %}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {% if match.is_multi %}
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                다중 자막
+              </span>
+              {% if match.english_extracted %}
+                <span class="ml-1 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                  영어 추출됨
+                </span>
+              {% endif %}
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+            <button hx-post="/api/subtitle-encoding/convert/{{ match.subtitle_path | urlencode }}" 
+                    hx-target="closest tr" 
+                    hx-swap="outerHTML"
+                    class="text-indigo-600 hover:text-indigo-900">
+              변환
+            </button>
+          </td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
+          자막 파일이 없습니다.
+        </td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>

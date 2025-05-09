@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+  /* 문서 페이지 스타일 */
+  .docs-container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+  }
+  
+  .docs-sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #f5f7fa;
+    border-right: 1px solid #e5e7eb;
+  }
+  
+  .docs-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .docs-sidebar li {
+    margin-bottom: 8px;
+  }
+  
+  .docs-sidebar a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #374151;
+    transition: all 0.2s;
+  }
+  
+  .docs-sidebar a:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .docs-sidebar a.active {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  .docs-content {
+    flex: 1;
+    padding: 20px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .docs-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .docs-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .docs-content h3 {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .docs-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  .docs-content ul, .docs-content ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+  }
+  
+  .docs-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .docs-content code {
+    font-family: monospace;
+    background-color: #f7f7f7;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  
+  .docs-content pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  
+  .docs-content pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+  }
+  
+  .docs-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+  }
+  
+  .docs-content th, .docs-content td {
+    padding: 8px 16px;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+  }
+  
+  .docs-content th {
+    background-color: #f5f7fa;
+    font-weight: 600;
+  }
+  
+  /* 모바일 스타일 */
+  @media (max-width: 768px) {
+    .docs-container {
+      flex-direction: column;
+    }
+    
+    .docs-sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .docs-content {
+      padding: 15px;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold">{{ title }}</h1>
+    <p class="text-gray-600">API 및 라우터 문서</p>
+  </div>
+  
+  <div class="docs-container">
+    <div class="docs-sidebar">
+      <h2 class="font-semibold text-lg mb-3">문서 목록</h2>
+      <ul>
+        {% for doc in docs %}
+        <li>
+          <a 
+            href="/docs/{{ doc.path }}" 
+            class="{% if current_doc and doc.path == current_doc %}active{% endif %}"
+          >
+            {{ doc.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    <div class="docs-content">
+      {% block docs_content %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %} 

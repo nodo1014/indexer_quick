@@ -32,7 +32,8 @@ async def search_subtitles(
     start_time: Optional[str] = None,
     end_time: Optional[str] = None,
     page: int = Query(1, ge=1),
-    per_page: int = Query(50, ge=1, le=100)
+    per_page: int = Query(50, ge=1, le=1000),
+    search_method: Optional[str] = None
 ):
     """
     자막을 검색하고 JSON 형식으로 결과를 반환합니다.
@@ -44,15 +45,28 @@ async def search_subtitles(
         end_time: 종료 시간 필터 (HH:MM:SS 형식)
         page: 페이지 번호 (기본값: 1)
         per_page: 페이지당 결과 수 (기본값: 50)
+        search_method: 검색 방식 ('like' 또는 'fts')
         
     Returns:
         JSONResponse: 검색 결과와 자막 정보
     """
-    logger.info(f"검색 요청 수신: query='{query}', lang={lang}, time={start_time}-{end_time}")
+    # 검색 방식이 지정되지 않은 경우 설정 파일의 기본값 사용
+    if search_method not in ['like', 'fts']:
+        search_method = config.get_default_search_method()
+        
+    logger.info(f"검색 요청 수신: query='{query}', lang={lang}, time={start_time}-{end_time}, search_method={search_method}")
     
     try:
-        # 검색 서비스 호출
-        results = db.search_subtitles(query=query, lang=lang, start_time=start_time, end_time=end_time, page=page, per_page=per_page)
+        # 검색 서비스 호출 - database.subtitles 모듈 함수 사용
+        from app.database.subtitles import search_subtitles as db_search_subtitles
+        results = db_search_subtitles(
+            query=query, 
+            lang=lang, 
+            start_time=start_time, 
+            end_time=end_time, 
+            page=page, 
+            per_page=per_page
+        )
         
         # 결과 로깅
         logger.info(f"검색 결과: {len(results)}개 찾음")
@@ -138,7 +152,7 @@ async def search_subtitles_json(
     start_time: Optional[str] = None,
     end_time: Optional[str] = None,
     page: int = Query(1, ge=1),
-    per_page: int = Query(50, ge=1, le=100)
+    per_page: int = Query(50, ge=1, le=1000)
 ):
     """
     자막을 검색하고 JSON 형식으로 결과를 반환합니다.

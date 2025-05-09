@@ -90,21 +90,48 @@ def migrate_data(old_db_path, new_db_path):
     try:
         # 1. media_files 테이블 데이터 이전
         print("미디어 파일 데이터 마이그레이션 중...")
-        old_cursor.execute("SELECT * FROM media_files")
-        media_files = old_cursor.fetchall()
         
-        # 컬럼 이름 가져오기
+        # 이전 데이터베이스의 컬럼 정보 가져오기
         old_cursor.execute("PRAGMA table_info(media_files)")
-        columns = [col[1] for col in old_cursor.fetchall()]
+        old_columns = [col[1] for col in old_cursor.fetchall()]
+        
+        # 새 데이터베이스의 컬럼 정보 가져오기 
+        new_cursor.execute("PRAGMA table_info(media_files)")
+        new_columns = [col[1] for col in new_cursor.fetchall()]
+        
+        # 공통 컬럼만 선택
+        common_columns = [col for col in old_columns if col in new_columns]
+        columns_str = ", ".join(common_columns)
+        
+        print(f"미디어 파일 테이블 마이그레이션 - 사용 컬럼: {columns_str}")
+        
+        # 데이터 조회 (공통 컬럼만)
+        old_cursor.execute(f"SELECT {columns_str} FROM media_files")
+        media_files = old_cursor.fetchall()
         
         # 데이터 삽입
         for media_file in media_files:
             placeholders = ", ".join(["?"] * len(media_file))
-            columns_str = ", ".join(columns)
             new_cursor.execute(f"INSERT INTO media_files ({columns_str}) VALUES ({placeholders})", media_file)
         
         # 2. subtitles 테이블 데이터 이전 (배치 처리)
         print("자막 데이터 마이그레이션 중...")
+        
+        # 이전 데이터베이스의 자막 테이블 컬럼 정보 가져오기
+        old_cursor.execute("PRAGMA table_info(subtitles)")
+        old_subtitle_columns = [col[1] for col in old_cursor.fetchall()]
+        
+        # 새 데이터베이스의 자막 테이블 컬럼 정보 가져오기
+        new_cursor.execute("PRAGMA table_info(subtitles)")
+        new_subtitle_columns = [col[1] for col in new_cursor.fetchall()]
+        
+        # 공통 컬럼만 선택
+        common_subtitle_columns = [col for col in old_subtitle_columns if col in new_subtitle_columns]
+        subtitle_columns_str = ", ".join(common_subtitle_columns)
+        
+        print(f"자막 테이블 마이그레이션 - 사용 컬럼: {subtitle_columns_str}")
+        
+        # 전체 자막 수 조회
         old_cursor.execute("SELECT COUNT(*) FROM subtitles")
         total_subtitles = old_cursor.fetchone()[0]
         
@@ -112,21 +139,15 @@ def migrate_data(old_db_path, new_db_path):
         processed = 0
         
         while processed < total_subtitles:
-            old_cursor.execute(f"SELECT * FROM subtitles LIMIT {batch_size} OFFSET {processed}")
+            old_cursor.execute(f"SELECT {subtitle_columns_str} FROM subtitles LIMIT {batch_size} OFFSET {processed}")
             subtitles_batch = old_cursor.fetchall()
             
             if not subtitles_batch:
                 break
             
-            # 컬럼 이름 가져오기 (첫 번째 배치에서만)
-            if processed == 0:
-                old_cursor.execute("PRAGMA table_info(subtitles)")
-                subtitle_columns = [col[1] for col in old_cursor.fetchall()]
-                subtitle_columns_str = ", ".join(subtitle_columns)
-            
             # 배치 삽입
             new_conn.executemany(
-                f"INSERT INTO subtitles ({subtitle_columns_str}) VALUES ({', '.join(['?'] * len(subtitle_columns))})",
+                f"INSERT INTO subtitles ({subtitle_columns_str}) VALUES ({', '.join(['?'] * len(common_subtitle_columns))})",
                 subtitles_batch
             )
             

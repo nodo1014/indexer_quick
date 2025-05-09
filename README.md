@@ -93,26 +93,18 @@ python main.py
   - [Tailwind CSS](https://tailwindcss.com/) - 유틸리티 우선 CSS 프레임워크
   - 자체 구현 비디오 플레이어 (Video.js 통합 중)
 
-### 디렉토리 구조
+# AI 코딩 규칙
 
-```
-app/                        # 메인 애플리케이션 코드
-  ├── models/               # 데이터 모델
-  ├── routes/               # API 라우트
-  ├── services/             # 비즈니스 로직 서비스
-  └── utils/                # 유틸리티 기능
+## DB 접근 규칙
 
-static/                     # 정적 파일 (CSS, JS, 이미지)
-templates/                  # Jinja2 템플릿
-```
+🎯 목적: DB 접근 코드를 분산하지 않고, 반드시 `database.subtitles`, `database.media` 등의 모듈을 통해서만 수행하게 리팩토링한다.
 
-### 개발 문서
+1. `indexing.py`, `subtitle_db.py`, `routes`, `services` 파일 등에서 `db.get_connection()`, `conn.cursor()`, `cursor.execute()` 등을 직접 호출하지 말 것.
+2. 이러한 DB 작업은 반드시 `database/subtitles.py` 또는 `database/media.py`로 이전하고, 해당 모듈의 함수만 호출하도록 수정한다.
+3. FTS 연동(`subtitles_fts`)은 `INSERT INTO subtitles` 시 트리거로 자동 반영되므로, 절대 `subtitles_fts`에 직접 INSERT/UPDATE/DELETE 하지 않는다.
+4. 기존 스키마 및 DB 구조는 절대로 변경하지 않는다.
+5. 반환 타입은 기존과 동일하게 유지하며 (`sqlite3.Row` → `dict` 변환 포함), 기존 호출부에서 `.get(...)`이나 `["field"]` 접근 방식이 깨지지 않게 한다.
+6. 예외 처리 (`try/except`, logging 등)는 기존 수준으로 유지하되, repository 계층에서 담당한다.
+7. 기존 클래스(`SubtitleDatabase` 등)는 필요 시 wrapper로 유지하되, DB 로직을 직접 포함하지 않도록 정리한다.
+8. 리팩토링 후 기존 라우트, 서비스 기능이 그대로 동작하도록 smoke test 수준으로라도 함수 사용 예가 통과되도록 한다.
 
-자세한 개발 진행 상황과 계획은 다음 문서를 참조하세요:
-- [프로젝트 진행 상황](PROGRESS.md): 개발 진행 현황 및 향후 계획
-- [사용법 가이드](사용법.md): 애플리케이션 사용 방법
-- [리팩토링 계획](refactoring_plan.md): 코드 개선 계획
-
-## 라이선스
-
-이 프로젝트는 MIT 라이선스 하에 제공됩니다. 

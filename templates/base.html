@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>영어 자막 인덱서 - {% block title %}{% endblock %}</title>
 
     <!-- 스타일시트 로드 -->
@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="/static/css/sidebar.css" />
 
     <!-- 파비콘 -->
-    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
 
     <!-- Google Fonts: Noto Sans KR, Roboto -->
     <link
@@ -49,143 +49,357 @@
     <!-- 공통 스타일 -->
     <style>
       .sidebar {
-        height: calc(100vh - 64px - 40px);
+        min-height: 500px; /* 최소 높이 설정 */
       }
 
       .main-content {
-        height: calc(100vh - 64px - 40px);
+        min-height: 500px; /* 최소 높이 설정 */
         overflow-y: auto;
+      }
+
+      /* 전체 레이아웃 구조를 flex로 변경 */
+      .page-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .content-wrapper {
+        flex: 1;
       }
     </style>
 
     {% block head %}{% endblock %}
   </head>
   <body class="bg-gray-100" hx-ext="event-header">
-    <!-- 헤더 / 로고 -->
-    <header class="bg-gray-900 text-white py-4 shadow-md">
-      <div class="container mx-auto flex justify-between items-center px-4">
-        <div class="flex items-center space-x-4">
-          <!-- 사이드바 토글 버튼 추가 -->
-          <button id="sidebar-toggle" class="text-white mr-2 p-1 hover:bg-gray-700 rounded">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-          <h1 class="text-2xl font-bold">자막 인덱서</h1>
-          <span class="text-sm bg-blue-600 px-2 py-1 rounded">베타</span>
-        </div>
-        <div class="flex items-center space-x-4">
-          <a href="/login" class="hover:underline">로그인</a>
-          <a
-            href="/register"
-            class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
-            >회원가입</a
-          >
-        </div>
-      </div>
-    </header>
-
-    <!-- 메인 컨텐츠 영역 -->
-    <div class="container mx-auto flex">
-      <!-- 사이드바 (네비게이션) -->
-      <aside
-        id="main-sidebar"
-        class="w-1/5 bg-gray-800 text-white p-4 sidebar transition-all duration-300"
-        role="navigation"
-        aria-label="사이드바 네비게이션"
-      >
-        <h2 class="text-xl font-bold mb-4">메뉴</h2>
-        <nav>
-          <ul class="space-y-2">
-            <li>
-              <a href="/" class="block p-2 hover:bg-gray-700 rounded">홈</a>
-            </li>
-            <li>
-              <a href="/search" class="block p-2 hover:bg-gray-700 rounded"
-                >자막 검색</a
+    <div class="page-container">
+      <!-- 헤더 / 로고 -->
+      <header class="bg-gray-900 text-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-4">
+          <div class="flex items-center space-x-4">
+            <!-- 사이드바 토글 버튼 추가 -->
+            <button
+              id="sidebar-toggle"
+              class="text-white mr-2 p-1 hover:bg-gray-700 rounded"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-            </li>
-            <li>
-              <a href="/dashboard" class="block p-2 hover:bg-gray-700 rounded"
-                >대시보드</a
-              >
-            </li>
-            <li>
-              <a
-                href="/indexing-process"
-                class="block p-2 hover:bg-gray-700 rounded"
-                >인덱싱 관리</a
-              >
-            </li>
-            <li>
-              <a href="/settings" class="block p-2 hover:bg-gray-700 rounded"
-                >환경 설정</a
-              >
-            </li>
-          </ul>
-        </nav>
-
-        <div class="mt-6">
-          <h3 class="text-lg font-semibold mb-2">통계</h3>
-          <div
-            id="stats"
-            hx-get="/api/stats"
-            hx-trigger="load, stats-refresh from:body"
-            class="bg-gray-700 p-3 rounded text-sm"
-          >
-            <p>로딩 중...</p>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+            <h1 class="text-2xl font-bold">유글리쉬</h1>
+            <span class="text-sm bg-blue-600 px-2 py-1 rounded">v1.0.0</span>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/login" class="hover:underline">로그인</a>
+            <a
+              href="/register"
+              class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
+              >회원가입</a
+            >
           </div>
         </div>
-      </aside>
+      </header>
 
-      <!-- 메인 콘텐츠 -->
-      <main class="w-4/5 p-6 main-content" role="main">
-        {% block content %}{% endblock %}
-      </main>
+      <!-- 메인 컨텐츠 영역 -->
+      <div class="container mx-auto flex content-wrapper">
+        <!-- 사이드바 (네비게이션) -->
+        <aside
+          id="main-sidebar"
+          class="w-1/5 bg-gray-800 text-white p-4 sidebar transition-all duration-300"
+          role="navigation"
+          aria-label="사이드바 네비게이션"
+        >
+          <h2 class="text-xl font-bold mb-4">메뉴</h2>
+          <nav>
+            <ul class="space-y-4">
+              <!-- 메뉴 설정에 따라 동적으로 생성되는 메뉴 -->
+              {% set menu_categories = { 'basic': {'title': '기본', 'items': [
+              {'id': 'home', 'title': '홈', 'url': '/', 'icon': '<path
+                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+              />'}, {'id': 'search', 'title': '자막 검색', 'url': '/search',
+              'icon': '<path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              />'}, {'id': 'dashboard', 'title': '대시보드', 'url':
+              '/dashboard', 'icon': '<path
+                d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"
+              /><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />'} ]},
+              'system': {'title': '시스템 관리', 'items': [ {'id':
+              'indexing_process', 'title': '인덱싱 프로세스', 'url':
+              '/indexing/process', 'icon': '<path
+                fill-rule="evenodd"
+                d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"
+                clip-rule="evenodd"
+              />'}, {'id': 'database', 'title': '데이터베이스 관리', 'url':
+              '/database', 'icon': '<path
+                d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z"
+              /><path
+                d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z"
+              /><path
+                d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z"
+              />'}, {'id': 'settings', 'title': '환경 설정', 'url': '/settings',
+              'icon': '<path
+                fill-rule="evenodd"
+                d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                clip-rule="evenodd"
+              />'} ]} } %}
+
+              <!-- 메뉴 설정이 있으면 동적 생성, 없으면 기본 메뉴 -->
+              {% if menu_settings %} {% for category_id, category in
+              menu_categories.items() %} {% if category_id in
+              menu_settings.categories and
+              menu_settings.categories[category_id].visible %}
+              <li>
+                <div
+                  class="text-sm font-semibold uppercase text-gray-400 mb-1 pl-2"
+                >
+                  {{ category.title }}
+                </div>
+                <ul class="space-y-1">
+                  {% for item in category.items %} {% if item.id in
+                  menu_settings.items and menu_settings.items[item.id].visible
+                  %}
+                  <li>
+                    <a
+                      href="{{ item.url }}"
+                      class="block p-2 hover:bg-gray-700 rounded flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        {{ item.icon|safe }}
+                      </svg>
+                      {{ item.title }}
+                    </a>
+                  </li>
+                  {% endif %} {% endfor %}
+                </ul>
+              </li>
+              {% endif %} {% endfor %} {% else %}
+              <!-- 기본 메뉴 구조 (메뉴 설정이 없을 경우 표시됨) -->
+              <!-- 기본 메뉴 -->
+              <li>
+                <div
+                  class="text-sm font-semibold uppercase text-gray-400 mb-1 pl-2"
+                >
+                  기본
+                </div>
+                <ul class="space-y-1">
+                  <li>
+                    <a
+                      href="/"
+                      class="block p-2 hover:bg-gray-700 rounded flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                        />
+                      </svg>
+                      홈
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/search"
+                      class="block p-2 hover:bg-gray-700 rounded flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      자막 검색
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/dashboard"
+                      class="block p-2 hover:bg-gray-700 rounded flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                        <path
+                          d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"
+                        />
+                      </svg>
+                      대시보드
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- 시스템 관리 -->
+              <li>
+                <div
+                  class="text-sm font-semibold uppercase text-gray-400 mb-1 pl-2"
+                >
+                  시스템 관리
+                </div>
+                <ul class="space-y-1">
+                  <li>
+                    <a
+                      href="/indexing/process"
+                      class="block p-2 hover:bg-gray-700 rounded flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      인덱싱 프로세스
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/database"
+                      class="block p-2 hover:bg-gray-700 rounded flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z"
+                        />
+                        <path
+                          d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z"
+                        />
+                        <path
+                          d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z"
+                        />
+                      </svg>
+                      데이터베이스 관리
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/settings"
+                      class="block p-2 hover:bg-gray-700 rounded flex items-center"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 mr-2"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      환경 설정
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+
+          <div class="mt-6">
+            <h3 class="text-lg font-semibold mb-2">통계</h3>
+            <div
+              id="stats"
+              hx-get="/api/stats"
+              hx-trigger="load, every 30s, stats-refresh from:body"
+              class="bg-gray-700 p-3 rounded text-sm"
+            >
+              <p>로딩 중...</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="w-4/5 p-6 main-content" role="main">
+          {% block content %}{% endblock %}
+        </main>
+      </div>
+
+      <!-- 푸터 -->
+      <footer
+        class="bg-gray-800 text-white p-2 text-center text-sm"
+        role="contentinfo"
+      >
+        <p>영어 자막 인덱서 - 2023</p>
+      </footer>
     </div>
 
-    <!-- 푸터 -->
-    <footer
-      class="bg-gray-800 text-white p-2 text-center text-sm"
-      role="contentinfo"
-    >
-      <p>영어 자막 인덱서 - 2023</p>
-    </footer>
-    
     <!-- 사이드바 토글 기능을 위한 JavaScript -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const sidebarToggle = document.getElementById('sidebar-toggle');
-        const sidebar = document.getElementById('main-sidebar');
-        const mainContent = document.querySelector('main');
+      document.addEventListener("DOMContentLoaded", function () {
+        const sidebarToggle = document.getElementById("sidebar-toggle");
+        const sidebar = document.getElementById("main-sidebar");
+        const mainContent = document.querySelector("main");
         let sidebarVisible = true;
-        
+
         // 로컬 스토리지에서 사이드바 상태 불러오기
-        const savedState = localStorage.getItem('sidebarVisible');
+        const savedState = localStorage.getItem("sidebarVisible");
         if (savedState !== null) {
-          sidebarVisible = savedState === 'true';
+          sidebarVisible = savedState === "true";
           updateSidebarState();
         }
-        
-        sidebarToggle.addEventListener('click', function() {
+
+        sidebarToggle.addEventListener("click", function () {
           sidebarVisible = !sidebarVisible;
           updateSidebarState();
-          
+
           // 상태 저장
-          localStorage.setItem('sidebarVisible', sidebarVisible);
+          localStorage.setItem("sidebarVisible", sidebarVisible);
         });
-        
+
         function updateSidebarState() {
           if (sidebarVisible) {
-            sidebar.classList.remove('w-0', 'p-0', 'overflow-hidden');
-            sidebar.classList.add('w-1/5');
-            mainContent.classList.remove('w-full');
-            mainContent.classList.add('w-4/5');
+            sidebar.classList.remove("w-0", "p-0", "overflow-hidden");
+            sidebar.classList.add("w-1/5");
+            mainContent.classList.remove("w-full");
+            mainContent.classList.add("w-4/5");
           } else {
-            sidebar.classList.remove('w-1/5');
-            sidebar.classList.add('w-0', 'p-0', 'overflow-hidden');
-            mainContent.classList.remove('w-4/5');
-            mainContent.classList.add('w-full');
+            sidebar.classList.remove("w-1/5");
+            sidebar.classList.add("w-0", "p-0", "overflow-hidden");
+            mainContent.classList.remove("w-4/5");
+            mainContent.classList.add("w-full");
           }
         }
       });

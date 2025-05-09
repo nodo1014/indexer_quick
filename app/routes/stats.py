@@ -9,6 +9,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from typing import Dict, Any, Optional, List
 
 from app.services.stats import stats_service
+from app.database import db  # 리팩토링된 데이터베이스 모듈 임포트
 
 # 라우터 생성
 router = APIRouter(prefix="/api", tags=["stats"])

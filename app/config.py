@@ -33,7 +33,13 @@ class Config:
         if self.config_path.exists():
             try:
                 with open(self.config_path, 'r', encoding='utf-8') as file:
-                    return json.load(file)
+                    config_data = json.load(file)
+                    
+                    # root_dir을 발견하면 media_dir로 마이그레이션
+                    if "root_dir" in config_data and "media_dir" not in config_data:
+                        config_data["media_dir"] = config_data.pop("root_dir")
+                        
+                    return config_data
             except Exception as e:
                 print(f"설정 파일 로딩 오류: {e}")
                 
@@ -47,6 +53,10 @@ class Config:
             bool: 저장 성공 여부
         """
         try:
+            # root_dir 키가 남아있다면 제거
+            if "root_dir" in self.data:
+                del self.data["root_dir"]
+                
             with open(self.config_path, 'w', encoding='utf-8') as file:
                 json.dump(self.data, file, indent=4, ensure_ascii=False)
             return True
@@ -65,6 +75,10 @@ class Config:
         Returns:
             Any: 설정 값 또는 기본값
         """
+        # root_dir은 media_dir로 리다이렉션
+        if key == "root_dir":
+            return self.data.get("media_dir", default)
+            
         return self.data.get(key, default)
     
     def set(self, key: str, value: Any) -> bool:
@@ -78,6 +92,10 @@ class Config:
         Returns:
             bool: 설정 성공 여부
         """
+        # root_dir은 media_dir로 리다이렉션
+        if key == "root_dir":
+            key = "media_dir"
+            
         self.data[key] = value
         return self.save()
     
@@ -91,6 +109,10 @@ class Config:
         Returns:
             bool: 업데이트 성공 여부
         """
+        # root_dir을 media_dir로 마이그레이션
+        if "root_dir" in settings:
+            settings["media_dir"] = settings.pop("root_dir")
+            
         self.data.update(settings)
         return self.save()
     
@@ -102,13 +124,26 @@ class Config:
             Dict[str, Any]: 기본 설정 데이터
         """
         return {
-            "root_dir": "",
+            # 통일된 키 사용
+            "media_dir": "",
+            "output_dir": "",
+            "delete_original": False,
+            "extract_english": True,
+            "convert_broken": True,
+            "process_multi": True,
+            "extract_from_media": False,
+            
+            # 추가 설정
             "media_extensions": [".mp4", ".mkv", ".avi", ".mov", ".wmv"],
             "subtitle_extension": ".srt",
+            "min_english_ratio": 0.2,
             "db_path": "media_index.db",
-            "indexing_strategy": "standard",
             "max_threads": os.cpu_count() or 4,
-            "last_scan_time": None
+            "last_scan_time": None,
+            "indexer_retry_count": 3,        # 인덱싱 오류 시 최대 재시도 횟수
+            "indexer_retry_interval": 10,    # 인덱싱 재시도 간격(초)
+            "auto_restart_indexing": False,   # 오류 발생 시 자동 재시작 여부 (False로 변경)
+            "default_search_method": "like"  # 기본 검색 방식 ('like' 또는 'fts')
         }
     
     def get_absolute_media_path(self, relative_path: str) -> str:
@@ -126,9 +161,9 @@ class Config:
             return relative_path
             
         # 현재 마운트 포인트 확인
-        mount_point = self.data.get('path_handling', {}).get('media_mount_point')
+        mount_point = self.data.get('media_dir', '')
         if not mount_point:
-            mount_point = self.data.get('root_dir', '')
+            mount_point = self.data.get('path_handling', {}).get('media_mount_point', '')
             
         return os.path.join(mount_point, relative_path)
     
@@ -147,9 +182,9 @@ class Config:
             return absolute_path
             
         # 현재 마운트 포인트 확인
-        mount_point = self.data.get('path_handling', {}).get('media_mount_point')
+        mount_point = self.data.get('media_dir', '')
         if not mount_point:
-            mount_point = self.data.get('root_dir', '')
+            mount_point = self.data.get('path_handling', {}).get('media_mount_point', '')
             
         if not mount_point or not absolute_path.startswith(mount_point):
             # 대체 마운트 포인트 확인
@@ -159,7 +194,7 @@ class Config:
                     mount_point = alt_mount
                     break
                     
-        # 마운트 포인트로 시작하지 않으면 원래 경로 반환
+        # 마운트 포인트로 시작하지 않으면, 원래 경로 반환
         if not mount_point or not absolute_path.startswith(mount_point):
             return absolute_path
             
@@ -201,9 +236,9 @@ class Config:
             return self.get_absolute_media_path(path)
             
         # 마운트 포인트 확인
-        mount_point = self.data.get('path_handling', {}).get('media_mount_point')
+        mount_point = self.data.get('media_dir', '')
         if not mount_point:
-            mount_point = self.data.get('root_dir', '')
+            mount_point = self.data.get('path_handling', {}).get('media_mount_point', '')
             
         # 경로가 마운트 포인트로 시작하지 않는 경우, 대체 마운트 포인트 확인
         if not path.startswith(mount_point):
@@ -217,7 +252,72 @@ class Config:
         
         # 이미 기본 마운트 포인트로 시작하는 경우 또는 다른 경로인 경우
         return path
+        
+    def get_default_search_method(self):
+        """기본 검색 방식 반환
+        
+        Returns:
+            str: 'fts' 또는 'like' (기본값: 'fts')
+        """
+        return self.data.get('default_search_method', 'fts')
+        
+    def reset_to_defaults(self) -> bool:
+        """
+        모든 설정을 기본값으로 초기화합니다.
+        
+        Returns:
+            bool: 초기화 성공 여부
+        """
+        # 기존 미디어 디렉토리 경로는 유지
+        media_dir = self.data.get("media_dir", "")
+        
+        # 기본 설정으로 초기화
+        self.data = self._get_default_config()
+        
+        # 미디어 디렉토리 경로 복원 (비어있지 않은 경우만)
+        if media_dir:
+            self.data["media_dir"] = media_dir
+            
+        # 설정 저장
+        return self.save()
 
 
 # 전역 설정 객체 생성
 config = Config()
+
+# 포워딩 함수들 추가
+def get_config() -> Dict[str, Any]:
+    """
+    현재 설정을 반환합니다.
+    
+    Returns:
+        Dict[str, Any]: 현재 설정 데이터
+    """
+    return config.data
+
+def save_config() -> bool:
+    """
+    현재 설정을 파일에 저장합니다.
+    
+    Returns:
+        bool: 성공 여부
+    """
+    return config.save()
+
+def get_default_config() -> Dict[str, Any]:
+    """
+    기본 설정을 반환합니다.
+    
+    Returns:
+        Dict[str, Any]: 기본 설정 데이터
+    """
+    return config._get_default_config()
+
+def load_config() -> Dict[str, Any]:
+    """
+    설정 파일을 로드합니다.
+    
+    Returns:
+        Dict[str, Any]: 로드된 설정 데이터
+    """
+    return config.load()

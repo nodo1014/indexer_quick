@@ -1,0 +1,46 @@
+{% extends "docs/docs_layout.html" %}
+
+{% block docs_content %}
+  {% if message %}
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+      <p class="text-yellow-700">{{ message }}</p>
+    </div>
+  {% else %}
+    <div class="prose max-w-none">
+      <h1>API 및 라우터 문서</h1>
+      
+      <p>
+        이 문서는 자막 인덱서 애플리케이션의 API 및 라우터 구조를 설명합니다. 
+        API 엔드포인트, 라우터 및 데이터 모델에 대한 자세한 정보를 볼 수 있습니다.
+      </p>
+      
+      <div class="mt-8">
+        <h2>문서 목록</h2>
+        <ul>
+          {% for doc in docs %}
+            <li>
+              <a href="/docs/{{ doc.path }}" class="text-blue-600 hover:underline">
+                {{ doc.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+        <h2 class="text-lg font-semibold mb-4">빠른 시작</h2>
+        <p class="mb-4">
+          좌측 사이드바에서 원하는 문서를 선택하거나, 아래 링크를 통해 시작하세요:
+        </p>
+        {% if docs %}
+          <a href="/docs/{{ docs[0].path }}" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+            {{ docs[0].title }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %} 

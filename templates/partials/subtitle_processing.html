@@ -1,0 +1,81 @@
+<div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="ml-3">
+      <p class="text-sm text-blue-700">
+        {{ message }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white shadow-md rounded-lg p-6 mb-6">
+  <h2 class="text-xl font-semibold mb-4">자막 처리 진행 상황</h2>
+  
+  <div class="mb-4">
+    <div class="w-full bg-gray-200 rounded-full h-4">
+      <div id="progress-bar" class="bg-blue-600 h-4 rounded-full" style="width: 0%"></div>
+    </div>
+    <div class="flex justify-between mt-1">
+      <span id="progress-text" class="text-sm text-gray-600">0%</span>
+      <span id="progress-status" class="text-sm text-gray-600">준비 중...</span>
+    </div>
+  </div>
+  
+  <div class="flex justify-between">
+    <button hx-get="/subtitle-encoding" 
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+      새로고침
+    </button>
+    
+    <button id="stop-processing-button" hx-post="/subtitle-encoding/stop-scan"
+            hx-swap="none"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+      <span>처리 중단</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  // 진행 상황 업데이트 함수
+  function updateProgress() {
+    fetch('/subtitle-encoding/scan-status')
+      .then(response => response.json())
+      .then(data => {
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const progressStatus = document.getElementById('progress-status');
+        
+        if (data.status === 'running') {
+          // 진행 상태 업데이트
+          progressBar.style.width = data.progress + '%';
+          progressText.textContent = data.progress + '%';
+          progressStatus.textContent = data.message;
+          
+          // 계속 업데이트
+          setTimeout(updateProgress, 500);
+        } else if (data.status === 'stopping') {
+          progressStatus.textContent = '처리 중단 중...';
+          setTimeout(updateProgress, 500);
+        } else {
+          // 완료된 경우 페이지 새로고침
+          if (data.progress === 100) {
+            window.location.reload();
+          }
+        }
+      })
+      .catch(error => {
+        console.error('진행 상황 확인 오류:', error);
+        setTimeout(updateProgress, 2000);  // 오류 시 더 긴 간격으로 재시도
+      });
+  }
+  
+  // 페이지 로드 시 진행 상황 업데이트 시작
+  document.addEventListener('DOMContentLoaded', function() {
+    updateProgress();
+  });
+</script>

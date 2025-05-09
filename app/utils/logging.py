@@ -11,6 +11,56 @@ from pathlib import Path
 from .constants import LOG_FILE_NAME
 
 
+def setup_module_logger(
+    module_name: str,
+    log_file: str = None,
+    level: int = logging.INFO,
+    verbose_file: str = None,
+    console_level: int = logging.INFO,
+    max_size: int = 5 * 1024 * 1024,  # 5MB
+    backup_count: int = 3
+):
+    """
+    모듈별 로거 설정 함수
+    
+    Args:
+        module_name: 모듈 이름 (예: "database.connection")
+        log_file: 로그 파일 경로 (None인 경우 기본 로그 파일 사용)
+        level: 기본 로그 레벨
+        verbose_file: 상세 로그를 저장할 파일 경로
+        console_level: 콘솔 출력 로그 레벨
+        max_size: 로그 파일 최대 크기 (바이트)
+        backup_count: 백업 파일 수
+        
+    Returns:
+        logging.Logger: 설정된 로거 객체
+    """
+    # 로그 파일이 지정되지 않은 경우 모듈 이름을 바탕으로 기본 경로 설정
+    if log_file is None:
+        main_module = module_name.split('.')[0]
+        if main_module in LOG_FILE_NAME:
+            log_file = LOG_FILE_NAME[main_module.upper()]
+        else:
+            log_dir = os.path.join('logs', main_module)
+            os.makedirs(log_dir, exist_ok=True)
+            log_file = os.path.join(log_dir, f"{module_name.replace('.', '_')}.log")
+    
+    # 상세 로그 파일이 지정되지 않은 경우 기본 로그 파일 경로에 _verbose 추가
+    if verbose_file is None and log_file:
+        verbose_file = log_file.replace('.log', '_verbose.log')
+    
+    # 기본 로거 설정 함수 호출
+    return setup_logger(
+        name=module_name,
+        log_file=log_file,
+        level=level,
+        verbose_file=verbose_file,
+        console_level=console_level,
+        max_size=max_size,
+        backup_count=backup_count
+    )
+
+
 def setup_logger(
     name: str,
     log_file: str = None,
@@ -105,11 +155,12 @@ def get_indexer_logger():
     Returns:
         logging.Logger: 인덱서 로거
     """
-    return setup_logger(
-        name="indexer",
+    return setup_module_logger(
+        module_name="indexer",
         log_file=LOG_FILE_NAME["INDEXER"],
+        level=logging.INFO,  # 기본 로그 레벨을 INFO로 설정
         verbose_file=LOG_FILE_NAME["INDEXER_VERBOSE"],
-        level=logging.INFO
+        console_level=logging.INFO
     )
 
 
@@ -163,4 +214,4 @@ class PathStrippingFilter(logging.Filter):
             except (ValueError, AttributeError):
                 # 상대 경로 변환 실패 시 원래 경로 유지
                 pass
-        return True 
+        return True

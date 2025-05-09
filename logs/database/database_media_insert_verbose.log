@@ -1,0 +1,1410 @@
+2025-05-09 19:38:31,165 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,165 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,170 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,171 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,176 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,176 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,182 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,182 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,189 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,189 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,195 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,196 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,203 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,204 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,225 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,225 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,261 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,262 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,280 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,281 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,298 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,298 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,319 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,320 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,341 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,341 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,370 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,371 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,407 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,407 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,444 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,445 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,479 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,479 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,518 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,518 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,575 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,575 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,634 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,634 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,688 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,688 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,735 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,736 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,793 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,794 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,856 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,857 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,926 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,926 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:31,996 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:31,997 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,075 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,076 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,163 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,163 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,253 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,253 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,336 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,337 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,424 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,425 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,514 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,515 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,603 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,604 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,794 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,795 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:32,898 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:32,899 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,010 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,011 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,133 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,134 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,244 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,244 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,352 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,353 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,468 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,469 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,592 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,592 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,692 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,692 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,808 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,809 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:33,944 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:33,945 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:34,091 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:34,091 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:34,240 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:34,240 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:34,393 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:34,394 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:34,542 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:34,543 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:34,687 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:34,688 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:34,968 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:34,970 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:35,156 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:35,157 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:35,310 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:35,310 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:35,476 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:35,478 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:35,641 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:35,642 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:35,794 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:35,795 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:35,963 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:35,963 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:36,123 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:36,124 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:36,283 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:36,284 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:36,439 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:36,439 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:36,603 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:36,604 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:36,747 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:36,748 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:36,906 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:36,907 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:37,076 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:37,077 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:37,223 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:37,224 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:37,375 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:37,376 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:37,559 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:37,559 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:37,714 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:37,714 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:37,891 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:37,892 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:38,076 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:38,077 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:38,273 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:38,274 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:38,455 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:38,456 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:38,666 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:38,667 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:38,884 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:38,885 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:39,088 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:39,088 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:39,312 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:39,312 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:39,567 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:39,568 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:39,772 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:39,773 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:40,057 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:40,059 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:40,274 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:40,275 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:40,515 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:40,517 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:40,724 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:40,725 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:40,990 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:40,990 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:41,249 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:41,250 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:41,518 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:41,519 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:41,780 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:41,781 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:42,005 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:42,005 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:42,251 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:42,251 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:42,489 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:42,490 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:42,764 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:42,765 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:43,067 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:43,068 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:43,320 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:43,321 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:43,605 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:43,606 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:43,913 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:43,913 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:44,416 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:44,417 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:44,707 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:44,708 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,004 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,005 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,035 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,036 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,044 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,045 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,056 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,056 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,068 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,068 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,077 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,078 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,094 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,094 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,105 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,106 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,116 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,117 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,127 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,127 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,144 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,144 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,159 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,160 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,175 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,175 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,193 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,195 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,211 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,211 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,234 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,235 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,257 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,257 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,285 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,285 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,312 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,316 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,350 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,351 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,384 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,384 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,420 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,421 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,455 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,455 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,488 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,489 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,525 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,527 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,569 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,570 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,619 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,620 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,672 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,672 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,722 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,722 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,778 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,778 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,835 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,836 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,895 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,896 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:45,966 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:45,967 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,021 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,023 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,029 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,030 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,037 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,038 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,042 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,042 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,053 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,054 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,059 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,060 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,068 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,069 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,074 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,074 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,080 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,080 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,086 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,086 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,093 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,093 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,101 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,101 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,111 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,112 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,123 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,123 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,141 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,142 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,155 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,155 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,170 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,171 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,184 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,185 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,201 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,201 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,219 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,219 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,240 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,240 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,255 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,255 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,279 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,280 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,298 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,299 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,320 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,321 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,340 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,341 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,361 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,361 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,380 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,380 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,402 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,403 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,429 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,429 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,461 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,462 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,490 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,490 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,515 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,516 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,543 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,544 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,569 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,570 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,598 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,599 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,635 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,636 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,669 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,669 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,705 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,706 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,750 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,751 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,796 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,797 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,840 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,841 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,891 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,891 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:49,946 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:49,946 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,001 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,002 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,060 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,060 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,121 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,122 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,184 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,185 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,235 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,235 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,299 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,300 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,361 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,361 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,425 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,426 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,490 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,490 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,561 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,561 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,626 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,627 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,702 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,703 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,768 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,768 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,842 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,842 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:50,921 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:50,921 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,000 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,001 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,085 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,086 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,176 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,176 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,283 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,284 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,384 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,384 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,488 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,489 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,589 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,589 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,684 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,684 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,802 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,802 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:51,922 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:51,922 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:52,053 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:52,054 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:52,174 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:52,174 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:52,295 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:52,296 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:52,406 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:52,406 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:52,544 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:52,544 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:52,686 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:52,686 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:52,822 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:52,823 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:52,952 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:52,953 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:53,083 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:53,084 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:53,250 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:53,251 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:53,400 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:53,400 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:53,563 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:53,564 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:53,716 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:53,717 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:53,860 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:53,861 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:54,012 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:54,013 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:54,171 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:54,172 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:54,321 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:54,322 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:54,475 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:54,475 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:54,619 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:54,619 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:54,784 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:54,784 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:54,938 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:54,939 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:55,095 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:55,095 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:55,270 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:55,271 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:55,440 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:55,440 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:55,617 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:55,617 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:55,792 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:55,792 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:55,960 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:55,961 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:56,136 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:56,137 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:56,291 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:56,292 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:56,443 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:56,444 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:56,630 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:56,631 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:57,146 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:57,146 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:57,333 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:57,334 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:57,520 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:57,522 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:57,695 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:57,696 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:57,878 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:57,878 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:58,057 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:58,057 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+
+2025-05-09 19:38:58,224 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:62 - 미디어 정보 저장 중 오류 발생: table media_files has no column named created_at
+2025-05-09 19:38:58,226 - database.media.insert - ERROR - /Volumes/p31/coding/indexer_quick/app/database/media/insert.py:64 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/media/insert.py", line 48, in insert_media
+    cursor.execute('''
+sqlite3.OperationalError: table media_files has no column named created_at
+

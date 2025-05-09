@@ -1,0 +1,13 @@
+2025-05-09 19:49:52,936 - database.subtitles.fts - ERROR - /Volumes/p31/coding/indexer_quick/app/database/subtitles/fts.py:180 - 자막 FTS 인덱스 추가 중 오류 발생: database is locked
+2025-05-09 19:49:52,938 - database.subtitles.fts - ERROR - /Volumes/p31/coding/indexer_quick/app/database/subtitles/fts.py:182 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/subtitles/fts.py", line 161, in add_subtitle_to_fts
+    cursor.execute('''
+sqlite3.OperationalError: database is locked
+
+2025-05-09 19:50:05,039 - database.subtitles.fts - ERROR - /Volumes/p31/coding/indexer_quick/app/database/subtitles/fts.py:180 - 자막 FTS 인덱스 추가 중 오류 발생: database is locked
+2025-05-09 19:50:05,040 - database.subtitles.fts - ERROR - /Volumes/p31/coding/indexer_quick/app/database/subtitles/fts.py:182 - Traceback (most recent call last):
+  File "/Volumes/p31/coding/indexer_quick/app/database/subtitles/fts.py", line 161, in add_subtitle_to_fts
+    cursor.execute('''
+sqlite3.OperationalError: database is locked
+
+2025-05-09 23:46:01,664 - database.subtitles.fts - INFO - /Volumes/p31/coding/indexer_quick/app/database/subtitles/fts.py:121 - FTS 인덱스 재구축 완료 (마지막 ID: 337570)
