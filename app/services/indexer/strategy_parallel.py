@@ -9,7 +9,7 @@ import traceback
 from concurrent.futures import ThreadPoolExecutor
 
 from app.config import config
-from app.services.indexer.base import IndexingStrategy
+from app.services.indexer.indexing_strategy import IndexingStrategy
 from app.utils import DEFAULT_MAX_THREADS
 
 

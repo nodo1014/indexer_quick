@@ -15,7 +15,8 @@ from app.utils.logging import get_indexer_logger
 # 인덱싱 관련 클래스 임포트
 from app.services.indexer.indexing_worker import IndexingWorker
 from app.services.indexer.indexing_status_handler import IndexingStatusHandler
-from app.services.indexer.indexing_strategy import StandardIndexingStrategy, ParallelIndexingStrategy
+from app.services.indexer.strategy_standard import StandardIndexingStrategy
+from app.services.indexer.strategy_parallel import ParallelIndexingStrategy
 
 logger = get_indexer_logger()
 
@@ -46,8 +47,8 @@ class IndexingService:
         self.worker = IndexingWorker(self.status_handler)
         
         # 인덱싱 전략 초기화
-        self.standard_strategy = StandardIndexingStrategy(self.worker)
-        self.parallel_strategy = ParallelIndexingStrategy(self.worker)
+        self.standard_strategy = StandardIndexingStrategy()
+        self.parallel_strategy = ParallelIndexingStrategy()
         
         # 초기화 완료 표시
         self._initialized = True

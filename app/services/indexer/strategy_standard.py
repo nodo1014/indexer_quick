@@ -7,7 +7,7 @@
 import time
 import traceback
 
-from app.services.indexer.base import IndexingStrategy
+from app.services.indexer.indexing_strategy import IndexingStrategy
 
 
 class StandardIndexingStrategy(IndexingStrategy):
@@ -107,5 +107,5 @@ class StandardIndexingStrategy(IndexingStrategy):
 
 
 # IndexerService 인스턴스 생성 (서비스 싱글톤)
-from app.services.indexer.base import IndexerService
-indexer_service = IndexerService()
+from app.services.indexer.indexing_service import IndexingService
+indexer_service = IndexingService()

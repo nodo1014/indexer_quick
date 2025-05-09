@@ -6,6 +6,4 @@
 from app.services.indexer.strategy_standard import indexer_service
 
 # 전략 클래스 가져오기
-from app.services.indexer.base import IndexingStrategy
-from app.services.indexer.strategy_standard import StandardIndexingStrategy
-from app.services.indexer.strategy_delayed_language import DelayedLanguageIndexingStrategy
+from app.services.indexer.indexing_strategy import IndexingStrategy
